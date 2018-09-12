@@ -1,0 +1,38 @@
+body {
+  user-select: none;
+  margin: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: "Helvetica Neue", sans-serif;
+  color: #fff;
+  border: 1px solid black;
+  border-radius: 1px;
+  -webkit-app-region: drag;
+  padding: 3px 6px;
+  cursor: text; }
+
+body > * {
+  pointer-events: none; }
+
+#user-typed {
+  color: #ddd; }
+  #user-typed em {
+    font-style: normal;
+    font-weight: bold;
+    color: #fff; }
+
+#flash {
+  display: inline-block;
+  background-color: #f00;
+  opacity: 0;
+  width: 2px;
+  height: 23px;
+  vertical-align: middle;
+  animation: blink-animation 1s steps(2, start) infinite; }
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden; } }
+
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden; } }
