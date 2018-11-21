@@ -13,6 +13,9 @@ body {
 body > * {
   pointer-events: none; }
 
+.text-muted {
+  opacity: 0.5; }
+
 #user-typed {
   color: #ddd; }
   #user-typed em {
