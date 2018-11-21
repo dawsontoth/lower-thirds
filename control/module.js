@@ -29,6 +29,8 @@ function activate() {
 
 function createControlWindow() {
 	let position = store.get('control-window-position');
+	delete position.width;
+	delete position.height;
 	controlWindow = exports.window = new BrowserWindow(_.defaults(position || {}, {
 		alwaysOnTop: true,
 		frame: false,
@@ -37,8 +39,8 @@ function createControlWindow() {
 		resizable: false,
 		x: 200,
 		y: 30,
-		width: 192,
-		height: 108
+		width: 240,
+		height: 80
 	}));
 	controlWindow.on('resize', saveState);
 	controlWindow.on('move', saveState);
@@ -51,8 +53,6 @@ function saveState() {
 	let bounds = controlWindow.getBounds();
 	store.set('control-window-position', {
 		x: bounds.x,
-		y: bounds.y,
-		width: bounds.width,
-		height: bounds.height
+		y: bounds.y
 	})
 }
