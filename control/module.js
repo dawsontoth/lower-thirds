@@ -34,6 +34,7 @@ function createControlWindow() {
 		frame: false,
 		toolbar: false,
 		transparent: true,
+		resizable: false,
 		x: 200,
 		y: 30,
 		width: 192,
