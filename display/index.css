@@ -2,7 +2,7 @@ html, body {
   user-select: none;
   margin: 0;
   padding: 0;
-  background-color: #00f;
+  background-color: #000;
   font-family: "Helvetica Neue", sans-serif;
   color: white;
   text-shadow: 2px 1px black;
@@ -76,7 +76,7 @@ html, body {
   20% {
     left: 0;
     width: 1px;
-    background-color: brown; }
+    background-color: white; }
   70% {
     width: 110%;
     background-color: #e0dec7; }
@@ -96,7 +96,7 @@ html, body {
   70% {
     left: 0;
     width: 1px;
-    background-color: brown; }
+    background-color: white; }
   100% {
     left: -14%;
     width: 1px;
