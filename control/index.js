@@ -12,9 +12,9 @@ let fuse = new Fuse(
 	{
 		shouldSort: true,
 		includeMatches: true,
-		threshold: 0.6,
+		threshold: 0.7,
 		location: 0,
-		distance: 100,
+		distance: 50,
 		maxPatternLength: 32,
 		minMatchCharLength: 1
 	}
@@ -69,14 +69,18 @@ function parse() {
 	}
 	let search = entry,
 		reference = '',
+		bookNumberFinder = /^(\d)([a-z])/i,
 		// TODO: Need to support complex references like 2:1, 3:1
 		referenceFinder = / ?(\d+):?([-,\da-h ]*)$/i;
 	if (referenceFinder.test(search)) {
 		reference = search.match(referenceFinder);
 		search = search.replace(referenceFinder, '');
 	}
+	if (bookNumberFinder.test(search)) {
+		search = search.replace(bookNumberFinder, '$1 $2');
+	}
 	let results = fuse.search(search);
-	if (results.length) {
+	if (search.indexOf('/') === -1 && results.length) {
 		let match = results[0].matches[0],
 			value = match.value,
 			html = value;
