@@ -25,62 +25,72 @@ html, body {
 
 $padding: 2px;
 
+.title {
+	font-size: 6vw;
+	font-weight: 300;
+	text-align: left;
+	padding: $padding 30px $padding $padding;
+
+	.wrapper {
+		top: 10000px;
+		position: relative;
+	}
+}
+
+.line {
+	position: absolute;
+	width: 100%;
+	height: 1px;
+	background-color: white;
+	opacity: 0;
+}
+
+.subtitle {
+	font-size: 4vw;
+	font-weight: 300;
+	text-align: right;
+	padding: $padding;
+
+	img {
+		height: 3vw;
+	}
+
+	.wrapper {
+		bottom: 10000px;
+		position: relative;
+	}
+}
+
 #lower-thirds {
 	position: absolute;
 	bottom: 5%;
 	left: 5%;
 
-	.title {
-		font-size: 6vw;
-		font-weight: 300;
-		text-align: left;
-		padding: $padding 30px $padding $padding;
-		.wrapper {
-			top: 10000px;
-			position: relative;
-		}
-	}
-	.line {
-		position: absolute;
-		width: 100%;
-		height: 1px;
-		background-color: white;
-		opacity: 0;
-	}
-	.subtitle {
-		font-size: 4vw;
-		font-weight: 300;
-		text-align: right;
-		padding: $padding;
-		img {
-			height: 3vw;
-		}
-		.wrapper {
-			bottom: 10000px;
-			position: relative;
-		}
-	}
-
 	&.in {
 		.line {
 			animation: 1s slideInLine;
 		}
+
 		.title .wrapper {
 			animation: .3s slideInUp;
 			animation-delay: .3s;
 		}
+
 		.subtitle .wrapper {
 			animation: .3s slideInDown;
 			animation-delay: .4s;
 		}
 	}
+
 	&.out {
 		.line {
 			animation: 1s slideOutLine;
 		}
+
 		.title .wrapper {
 			animation: .3s slideOutUp;
 		}
+
 		.subtitle .wrapper {
 			animation: .3s slideOutDown;
 		}
@@ -95,90 +105,105 @@ $padding: 2px;
 
 }
 
-@keyframes slideInLine {
-	0% {
-		opacity: 1;
-		left: -14%;
-		width: 1px;
+@mixin createKeyFrames($color) {
+	@keyframes slideInLine {
+		0% {
+			opacity: 1;
+			left: -14%;
+			width: 1px;
+		}
+		20% {
+			left: 0;
+			width: 1px;
+			background-color: white;
+		}
+		70% {
+			width: 110%;
+			background-color: $color;
+		}
+		100% {
+			opacity: 1;
+			width: 100%;
+			background-color: $color;
+		}
 	}
-	20% {
-		left: 0;
-		width: 1px;
-		background-color: white;
+
+	@keyframes slideOutLine {
+		0% {
+			opacity: 1;
+			width: 100%;
+			background-color: $color;
+		}
+		20% {
+			width: 110%;
+			background-color: $color;
+		}
+		70% {
+			left: 0;
+			width: 1px;
+			background-color: white;
+		}
+		100% {
+			left: -14%;
+			width: 1px;
+			opacity: 0;
+		}
 	}
-	70% {
-		width: 110%;
-		background-color: #e0dec7;
+
+	@keyframes slideInUp {
+		0% {
+			top: 5vw;
+			opacity: 0;
+		}
+		100% {
+			top: 0;
+			opacity: 1;
+		}
 	}
-	100% {
-		opacity: 1;
-		width: 100%;
-		background-color: #e0dec7;
+
+	@keyframes slideOutUp {
+		0% {
+			top: 0;
+			opacity: 1;
+		}
+		100% {
+			top: 5vw;
+			opacity: 0;
+		}
+	}
+
+	@keyframes slideInDown {
+		0% {
+			bottom: 3vw;
+			opacity: 0;
+		}
+		100% {
+			bottom: 0;
+			opacity: 1;
+		}
+	}
+
+	@keyframes slideOutDown {
+		0% {
+			bottom: 0;
+			opacity: 1;
+		}
+		100% {
+			bottom: 3vw;
+			opacity: 0;
+		}
 	}
 }
 
-@keyframes slideOutLine {
-	0% {
-		opacity: 1;
-		width: 100%;
-		background-color: #e0dec7;
+.for-alpha-channel {
+	.title,
+	.subtitle {
+		text-shadow: 1px 1px 2px white;
 	}
-	20% {
-		width: 110%;
-		background-color: #e0dec7;
-	}
-	70% {
-		left: 0;
-		width: 1px;
-		background-color: white;
-	}
-	100% {
-		left: -14%;
-		width: 1px;
-		opacity: 0;
-	}
+
+	@include createKeyFrames(white);
 }
 
-@keyframes slideInUp {
-	0% {
-		top: 5vw;
-		opacity: 0;
-	}
-	100% {
-		top: 0;
-		opacity: 1;
-	}
-}
-
-@keyframes slideOutUp {
-	0% {
-		top: 0;
-		opacity: 1;
-	}
-	100% {
-		top: 5vw;
-		opacity: 0;
-	}
-}
-
-@keyframes slideInDown {
-	0% {
-		bottom: 3vw;
-		opacity: 0;
-	}
-	100% {
-		bottom: 0;
-		opacity: 1;
-	}
-}
-
-@keyframes slideOutDown {
-	0% {
-		bottom: 0;
-		opacity: 1;
-	}
-	100% {
-		bottom: 3vw;
-		opacity: 0;
-	}
+.not-alpha-channel {
+	@include createKeyFrames(#e0dec7);
 }

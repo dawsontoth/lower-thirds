@@ -1,3 +1,7 @@
+process.on('uncaughtException', err => {
+	console.error(err);
+});
+
 const { app, ipcMain } = require('electron'),
 	control = require('./control/module'),
 	display = require('./display/module');
@@ -11,7 +15,8 @@ ipcMain.on('change', pumpMessage('change'));
 
 function init() {
 	control.init();
-	display.init();
+	display.init(true);
+	display.init(false)
 }
 
 function cleanUp() {
@@ -21,7 +26,9 @@ function cleanUp() {
 }
 
 function pumpMessage(key) {
-	return function(evt, args) {
-		display.window.webContents.send(key, args);
+	return (evt, args) => {
+		display.windows.forEach(window =>
+			window.webContents.send(key, args)
+		);
 	};
 }

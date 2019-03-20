@@ -28,24 +28,28 @@ function activate() {
 }
 
 function createControlWindow() {
-	let position = store.get('control-window-position');
-	delete position.width;
-	delete position.height;
-	controlWindow = exports.window = new BrowserWindow(_.defaults(position || {}, {
-		alwaysOnTop: true,
-		frame: false,
-		toolbar: false,
-		transparent: true,
-		resizable: false,
-		x: 200,
-		y: 30,
-		width: 240,
-		height: 80
-	}));
+	let defaults = {
+			autoHideMenuBar: true,
+			x: 200,
+			y: 30,
+			width: 400,
+			height: 200,
+			title: 'Lower Thirds',
+			backgroundColor: '#000000',
+		},
+		position = store.get('control-window-position') || defaults;
+	if (position.width < defaults.width) {
+		position.width = defaults.width;
+	}
+	if (position.height < defaults.height) {
+		position.height = defaults.height;
+	}
+	controlWindow = exports.window = new BrowserWindow(_.defaults(position, defaults));
 	controlWindow.on('resize', saveState);
 	controlWindow.on('move', saveState);
 	controlWindow.loadFile('control/index.html');
 	// controlWindow.webContents.openDevTools();
+	controlWindow.maximize();
 	controlWindow.on('closed', () => controlWindow = null);
 }
 
@@ -53,6 +57,8 @@ function saveState() {
 	let bounds = controlWindow.getBounds();
 	store.set('control-window-position', {
 		x: bounds.x,
-		y: bounds.y
-	})
+		y: bounds.y,
+		width: bounds.width,
+		height: bounds.height
+	});
 }

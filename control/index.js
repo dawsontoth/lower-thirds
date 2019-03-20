@@ -1,7 +1,10 @@
 let userTyped = document.getElementById('user-typed'),
 	fs = require('fs'),
 	Fuse = require('fuse.js'),
-	ipc = require('electron').ipcRenderer;
+	ipc = require('electron').ipcRenderer,
+	au = require('autoit');
+
+au.Init();
 
 let names = fs.readFileSync('data/names.txt', 'UTF-8').split('\n'),
 	chapters = fs.readFileSync('data/chapters.txt', 'UTF-8').split('\n'),
@@ -21,11 +24,49 @@ let fuse = new Fuse(
 );
 
 let isOn = false,
+	showWebCam = true,
 	entry = '',
-	parsed = '';
+	parsed = '',
+	background = document.getElementById('background'),
+	video = document.getElementsByTagName('video')[0];
 
+background.onclick = backgroundClicked;
 window.onkeydown = onKeyDown;
 window.onkeypress = onKeyPress;
+
+if (showWebCam && navigator.mediaDevices.getUserMedia) {
+	navigator.mediaDevices.enumerateDevices()
+		.then(devices => {
+			for (let i = 0; i < devices.length; i++) {
+				let device = devices[i];
+				if (device.kind === 'videoinput'
+					&& device.label.indexOf('MiraBox Video Capture') === 0) {
+					return device.deviceId;
+				}
+			}
+		})
+		.then(deviceId => {
+			if (deviceId) {
+				return navigator.mediaDevices.getUserMedia({
+					video: {
+						deviceId: {
+							exact: deviceId
+						},
+						width: { ideal: 1920 },
+						height: { ideal: 1080 }
+					}
+				});
+			}
+		})
+		.then(stream => {
+			if (stream) {
+				video.srcObject = stream;
+			}
+		})
+		.catch(err => {
+			console.error(err);
+		});
+}
 
 function onKeyDown(evt) {
 	if (evt.key === 'Escape') {
@@ -96,5 +137,24 @@ function parse() {
 	else {
 		parsed = entry;
 		userTyped.innerHTML = entry;
+	}
+}
+
+function backgroundClicked(evt) {
+	let dx = evt.x / background.offsetWidth,
+		dy = evt.y / background.offsetHeight,
+		title = 'ATEM',
+		control = '';
+	// Did they click on the preview or program?
+	if (dx > 0.5) {
+		let fade = dy < 0.5;
+		// Then we need to cut or fade.
+		au.ControlSend(title, '', control, fade ? '{ENTER}' : '{SPACE}');
+	}
+	else {
+		let rowOffset = 1 + (dy * 4 | 0) * 2,
+			columnOffset = dx > 0.25 ? 1 : 0;
+		let source = rowOffset + columnOffset;
+		au.ControlSend(title, '', control, String(source));
 	}
 }

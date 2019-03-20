@@ -2,36 +2,47 @@ const electron = require('electron'),
 	_ = require('lodash'),
 	{ BrowserWindow } = electron;
 
-let displayWindow;
+exports.windows = [];
 exports.init = createDisplayWindow;
 
-function createDisplayWindow() {
+function createDisplayWindow(alphaChannel) {
 	let screen = electron.screen,
 		secondaryDisplay = screen
 			.getAllDisplays()
 			.find(display => display.bounds.x || display.bounds.y),
-		position = secondaryDisplay
+		tertiaryDisplay = secondaryDisplay && screen
+			.getAllDisplays()
+			.find(display => (display.bounds.x || display.bounds.y) && display !== secondaryDisplay),
+		displayOn = alphaChannel ? tertiaryDisplay : secondaryDisplay,
+		position = displayOn
 			? {
-				x: secondaryDisplay.bounds.x,
-				y: secondaryDisplay.bounds.y,
-				width: secondaryDisplay.bounds.width,
-				height: secondaryDisplay.bounds.height
+				x: displayOn.bounds.x,
+				y: displayOn.bounds.y,
+				width: displayOn.bounds.width,
+				height: displayOn.bounds.height
 			}
 			: {
-				x: 200,
+				x: 200 + (!alphaChannel ? 0 : 192 * 2),
 				y: 30,
 				width: 192 * 2,
 				height: 108 * 2
 			};
-	displayWindow = exports.window = new BrowserWindow(_.defaults(position, {
+	if (alphaChannel && secondaryDisplay && !tertiaryDisplay) {
+		return;
+	}
+	let displayWindow = new BrowserWindow(_.defaults(position, {
 		frame: false,
 		alwaysOnTop: true,
+		focusable: false,
 		// fullscreen: true,
-		title: 'Lower Thirds',
+		title: 'Titles - ' + (alphaChannel ? 'Alpha' : 'Display'),
 		backgroundColor: '#000000',
 		// titleBarStyle: 'customButtonsOnHover'
 	}));
 	displayWindow.loadFile('display/index.html');
+	displayWindow.webContents.executeJavaScript(
+		`document.body.classList.add("${alphaChannel ? 'for' : 'not'}-alpha-channel")`
+	);
+	exports.windows.push(displayWindow);
 	// displayWindow.webContents.openDevTools();
-	displayWindow.on('closed', () => displayWindow = null);
 }
