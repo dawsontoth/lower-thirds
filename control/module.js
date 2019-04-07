@@ -50,7 +50,7 @@ function createControlWindow() {
 	controlWindow.loadFile('control/index.html');
 	// controlWindow.webContents.openDevTools();
 	controlWindow.maximize();
-	controlWindow.on('closed', () => controlWindow = null);
+	controlWindow.on('closed', () => electron.app.quit());
 }
 
 function saveState() {

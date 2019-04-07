@@ -1,4 +1,13 @@
+Psalms
+Matthew
+John
+Romans
+Proverbs
 Genesis
+Luke
+1 Corinthians
+Isaiah
+Acts
 Exodus
 Leviticus
 Numbers
@@ -16,11 +25,8 @@ Ezra
 Nehemiah
 Esther
 Job
-Psalm
-Proverbs
 Ecclesiastes
 Song of Songs
-Isaiah
 Jeremiah
 Lamentations
 Ezekiel
@@ -37,13 +43,7 @@ Zephaniah
 Haggai
 Zechariah
 Malachi
-Matthew
 Mark
-Luke
-John
-Acts
-Romans
-1 Corinthians
 2 Corinthians
 Galatians
 Ephesians

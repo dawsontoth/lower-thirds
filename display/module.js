@@ -2,6 +2,8 @@ const electron = require('electron'),
 	_ = require('lodash'),
 	{ BrowserWindow } = electron;
 
+let testing = false;
+
 exports.windows = [];
 exports.init = createDisplayWindow;
 
@@ -24,7 +26,7 @@ function createDisplayWindow(alphaChannel) {
 				width: 192 * 2,
 				height: 108 * 2
 			};
-	if (alphaChannel && secondaryDisplay && !tertiaryDisplay) {
+	if (!testing && alphaChannel && (!secondaryDisplay || !tertiaryDisplay)) {
 		return;
 	}
 	let displayWindow = new BrowserWindow(_.defaults(position, {

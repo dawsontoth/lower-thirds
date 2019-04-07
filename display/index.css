@@ -59,7 +59,7 @@ html, body {
 #lower-thirds {
   position: absolute;
   bottom: 5%;
-  left: 5%;
+  left: 10%;
 }
 #lower-thirds.in .line {
   animation: 1s slideInLine;
