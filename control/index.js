@@ -143,18 +143,22 @@ function parse() {
 function backgroundClicked(evt) {
 	let dx = evt.x / background.offsetWidth,
 		dy = evt.y / background.offsetHeight,
-		title = 'ATEM',
-		control = '';
+		title = 'ATEM Production Studio 4K',
+		control = null,
+		result = null;
 	// Did they click on the preview or program?
 	if (dx > 0.5) {
 		let fade = dy < 0.5;
 		// Then we need to cut or fade.
-		au.ControlSend(title, '', control, fade ? '{ENTER}' : '{SPACE}');
+		result = au.ControlSend(title, '', control, fade ? '{ENTER}' : '{SPACE}');
 	}
 	else {
 		let rowOffset = 1 + (dy * 4 | 0) * 2,
 			columnOffset = dx > 0.25 ? 1 : 0;
 		let source = rowOffset + columnOffset;
-		au.ControlSend(title, '', control, String(source));
+		result = au.ControlSend(title, '', control, String(source));
 	}
+	//if (result !== null) {
+	//	console.log('result:', result);
+	//}
 }

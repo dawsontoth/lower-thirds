@@ -7,12 +7,9 @@ exports.init = createDisplayWindow;
 
 function createDisplayWindow(alphaChannel) {
 	let screen = electron.screen,
-		secondaryDisplay = screen
-			.getAllDisplays()
-			.find(display => display.bounds.x || display.bounds.y),
-		tertiaryDisplay = secondaryDisplay && screen
-			.getAllDisplays()
-			.find(display => (display.bounds.x || display.bounds.y) && display !== secondaryDisplay),
+		displays = screen.getAllDisplays().sort((a, b) => a.bounds.x - b.bounds.x),
+		secondaryDisplay = displays.find(display => display.bounds.x || display.bounds.y),
+		tertiaryDisplay = secondaryDisplay && displays.find(display => (display.bounds.x || display.bounds.y) && display !== secondaryDisplay),
 		displayOn = alphaChannel ? tertiaryDisplay : secondaryDisplay,
 		position = displayOn
 			? {
