@@ -29,12 +29,16 @@ $padding: 2px;
 	font-size: 6vw;
 	font-weight: 300;
 	text-align: left;
-	padding: $padding 30px $padding $padding;
+	padding: $padding;
 
 	.wrapper {
 		top: 10000px;
 		position: relative;
 	}
+}
+
+.has-subtitle .title {
+	padding-right: 30px;
 }
 
 .line {

@@ -38,7 +38,7 @@ video {
 	right: 50%;
 	bottom: 0;
 	left: 0;
-	background-color: white;
+	background-color: rgba(196, 196, 196, 1);
 
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -46,7 +46,7 @@ video {
 
 	> * {
 		background-color: black;
-		border: 5px solid white;
+		border: 5px solid rgba(196, 196, 196, 1);
 		color: white;
 		display: flex;
 		font-size: 14px;

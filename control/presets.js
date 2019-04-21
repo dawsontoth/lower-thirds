@@ -38,7 +38,7 @@ function onKeyDown(evt) {
 }
 
 function onKeyPress(evt) {
-	if ((evt.key === 'Enter' || evt.key === 'Return') && entry) {
+	if (evt.key === 'Enter' || evt.key === 'Return') {
 		if (editingPreset) {
 			let preset = editingPreset;
 			presets[editingPresetAt] = parsed;
@@ -48,7 +48,7 @@ function onKeyPress(evt) {
 			preset.classList.add('active');
 			setTimeout(() => preset.classList.remove('active'), 100);
 		}
-		else {
+		else if (entry) {
 			showText(parsed);
 		}
 	}

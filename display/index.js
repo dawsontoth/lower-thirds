@@ -6,8 +6,16 @@ let lowerThirds = document.getElementById('lower-thirds'),
 
 ipc
 	.on('change', (evt, args) => {
-		titleContents.innerText = args.title || '';
-		subtitleContents.innerText = args.subtitle || '';
+		let title = (args.title || '').trim(),
+			subtitle = (args.subtitle || '').trim();
+		if (subtitle) {
+			lowerThirds.classList.add('has-subtitle');
+		}
+		else {
+			lowerThirds.classList.remove('has-subtitle');
+		}
+		titleContents.innerText = title;
+		subtitleContents.innerText = subtitle;
 	})
 	.on('in', () => {
 		classList.remove('out');
@@ -17,4 +25,4 @@ ipc
 		classList.remove('in');
 		classList.add('out');
 	})
-;
+	;
