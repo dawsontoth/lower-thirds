@@ -44,8 +44,8 @@ module.exports = function(entry) {
 			html = `${html.slice(0, index[0]) || ''}<em>${html.slice(index[0], index[1] + 1)}</em>${html.slice(index[1] + 1) || ''}`
 		}
 		let suffix = (value && reference ? ' ' : '')
-			+ (reference ? reference[1] + (reference[2] ? ':' : '') + reference[2] : '');
-		return { text: value + suffix, html: html + suffix };
+			+ (reference ? reference.slice(1).join(':') : '');
+		return { text: value + suffix, html: (html + suffix).replace(/> /g, '>&nbsp;') };
 	}
 	else {
 		return { text: entry, html: entry };
