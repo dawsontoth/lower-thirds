@@ -23,9 +23,8 @@ setInterval(ensureConnected, 2000);
 function ensureConnected() {
     if (cerevoIP) {
         hit(cerevoIP).catch(err => {
-            status.classList.remove('connected');
-            status.classList.remove('recording');
             cerevoIP = null;
+            syncStatusColor();
         });
     }
     else if (!scanning) {
@@ -46,7 +45,7 @@ function scan() {
                         // No error thrown? Then we connected!
                         cerevoIP = ip;
                         store.set('last-cerevo-ip', cerevoIP);
-                        status.classList.add('connected');
+                        syncStatusColor();
                         throw new Error('Stop trying to connect to others');
                     }
                 },
@@ -80,12 +79,7 @@ function hit(ip, payload) {
         .then(res => res && res.json && res.json())
         .then(json => {
             recording = !!json && !!json['bitrate,0'];
-            if (recording) {
-                status.classList.add('recording');
-            }
-            else {
-                status.classList.remove('recording');
-            }
+            syncStatusColor();
             return json;
         });
 }
@@ -112,10 +106,6 @@ function getServers() {
     return result
 }
 
-function pingServers() {
-    return Promise.all(servers.map(pingServer));
-}
-
 function pingServer(address) {
     return new Promise(function (resolve) {
         var socket = new net.Socket();
@@ -128,4 +118,20 @@ function pingServer(address) {
             resolve(address);
         }
     });
+}
+
+function syncStatusColor() {
+    if (cerevoIP) {
+        status.classList.add('connected');
+        if (recording) {
+            status.classList.add('recording');
+        }
+        else {
+            status.classList.remove('recording');
+        }
+    }
+    else {
+        status.classList.remove('connected');
+        status.classList.remove('recording');
+    }
 }
