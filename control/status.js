@@ -38,7 +38,6 @@ function scan() {
     cp.exec('arp -a', options)
         .then(data => {
             const ips = String(data).match(/10\.3\.\d{1,3}\.\d{1,3}/g).sort().reverse();
-            console.log(ips);
             async.eachLimit(
                 ips,
                 10,
