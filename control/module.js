@@ -50,6 +50,7 @@ function createControlWindow() {
 	controlWindow.loadFile('control/index.html');
 	// controlWindow.webContents.openDevTools();
 	controlWindow.maximize();
+	controlWindow.setFullScreen(true);
 	controlWindow.on('closed', () => electron.app.quit());
 }
 
