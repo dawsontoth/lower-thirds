@@ -15,9 +15,12 @@
 		"electron-rebuild": "^1.8.4"
 	},
 	"dependencies": {
+		"async": "^3.0.1",
 		"autoit": "^1.1.10",
 		"fuse.js": "^3.4.4",
 		"lodash": "^4.17.11",
+		"mz": "^2.7.0",
+		"node-fetch": "^2.6.0",
 		"sass": "^1.17.3"
 	}
 }

@@ -1,5 +1,6 @@
 let ipc = require('electron').ipcRenderer,
 	suggest = require('./suggest'),
+	atem = require('./atem'),
 	store = require('../lib/store');
 
 let userTyped = document.getElementById('user-typed'),
@@ -51,6 +52,12 @@ function onKeyPress(evt) {
 		else if (entry) {
 			showText(parsed);
 		}
+		else {
+			atem.cut();
+		}
+	}
+	else if (!entry && evt.key === ' ') {
+		atem.fade();
 	}
 	else if (evt.key.length === 1 && /[-,: \/A-Z\d]/i.test(evt.key)) {
 		entry += evt.key;
