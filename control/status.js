@@ -1,7 +1,7 @@
 let cp = require('mz/child_process'),
     fetch = require('node-fetch'),
     async = require('async'),
-    store = require('../lib/store'),
+    store = new (require('../lib/store'))('cerevo'),
     ip = require('ip'),
     os = require('os'),
     net = require('net');

@@ -1,7 +1,7 @@
 const electron = require('electron'),
 	_ = require('lodash'),
 	{ BrowserWindow, app, globalShortcut } = electron,
-	store = require('../lib/store');
+	store = new (require('../lib/store'))('control');
 
 let controlWindow;
 exports.init = createControlWindow;

@@ -1,7 +1,7 @@
 let ipc = require('electron').ipcRenderer,
 	suggest = require('./suggest'),
 	atem = require('./atem'),
-	store = require('../lib/store');
+	store = new (require('../lib/store'))('presets');
 
 let userTyped = document.getElementById('user-typed'),
 	clear = document.getElementById('clear');
