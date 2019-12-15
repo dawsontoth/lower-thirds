@@ -7,6 +7,7 @@ import { useSuggestion } from '../hooks/suggestion';
 import { Action } from '../models/action';
 import { areDifferent, areEqual } from '../models/primary-secondary';
 import { Shortcut } from '../models/shortcut';
+import { focusPrimary } from '../utils/focus-primary';
 import './action-button.scss';
 
 export function ActionButton({ action, icon, shortcut }:{ action:Action, icon:string, shortcut:Shortcut }) {
@@ -24,15 +25,26 @@ export function ActionButton({ action, icon, shortcut }:{ action:Action, icon:st
 		case Action.Show:
 			enabled = Boolean((currentSuggestion.primary || currentSuggestion.secondary)
 				&& (!displayed || areDifferent(displayed, currentSuggestion)));
-			onClick = enabled ? () => setDisplayed({ ...currentSuggestion }) : undefined;
+			onClick = enabled
+				? () => {
+					setDisplayed({ ...currentSuggestion });
+					focusPrimary();
+				}
+				: focusPrimary;
 			break;
 		case Action.Hide:
 			enabled = Boolean(displayed?.primary || displayed?.secondary);
 			onClick = enabled
-				? () => setDisplayed(null)
+				? () => {
+					setDisplayed(null);
+					focusPrimary();
+				}
 				: currentSuggestion
-					? () => setInput(emptyInput)
-					: undefined;
+					? () => {
+						setInput(emptyInput);
+						focusPrimary();
+					}
+					: focusPrimary;
 			break;
 		case Action.Save:
 			enabled = Boolean((currentSuggestion.primary || currentSuggestion.secondary)
@@ -41,8 +53,9 @@ export function ActionButton({ action, icon, shortcut }:{ action:Action, icon:st
 				? () => {
 					setPresets([...presets, { ...currentSuggestion }]);
 					setInput(emptyInput);
+					focusPrimary();
 				}
-				: undefined;
+				: focusPrimary;
 			break;
 	}
 

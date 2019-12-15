@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSuggestionMode } from '../hooks/suggestion-mode';
 import { SuggestionMode } from '../models/suggestion-mode';
+import { focusPrimary } from '../utils/focus-primary';
 
 export function SuggestButton({ mode, label, icon }:{ mode:SuggestionMode, label:string, icon:string }) {
 	const [currentMode, changeMode] = useSuggestionMode();
@@ -18,11 +19,4 @@ export function SuggestButton({ mode, label, icon }:{ mode:SuggestionMode, label
 			<i className={ 'icon-depict ' + icon }/>
 		</button>
 	);
-}
-
-function focusPrimary() {
-	const primary = document.getElementById('primary-line');
-	if (primary) {
-		primary.focus();
-	}
 }
