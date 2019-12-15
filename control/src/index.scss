@@ -28,3 +28,7 @@ button {
 	outline: none;
 	background-color: transparent;
 }
+
+button:focus {
+	background-color: $color-positive;
+}

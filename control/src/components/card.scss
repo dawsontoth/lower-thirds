@@ -5,10 +5,10 @@
 	flex-direction: column;
 
 	user-select: none;
-	background: linear-gradient(135deg, $color-focus 0%, $color-neutral 100%);
+	background: linear-gradient(135deg, $color-light 0%, $color-neutral 100%);
 	margin: 6px;
 	border-radius: 6px;
-	box-shadow: 0 2px 2px $color-light;
+	box-shadow: 0 2px 2px $color-dark;
 	flex: 0;
 	min-width: 200px;
 	text-align: left;
