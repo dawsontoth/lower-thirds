@@ -2,7 +2,7 @@ const electron = require('electron'),
 	_ = require('lodash'),
 	{ BrowserWindow } = electron;
 
-let testing = false;
+let testing = true;
 
 exports.windows = [];
 exports.init = createDisplayWindow;
@@ -18,29 +18,32 @@ function createDisplayWindow(alphaChannel) {
 				x: displayOn.bounds.x,
 				y: displayOn.bounds.y,
 				width: displayOn.bounds.width,
-				height: displayOn.bounds.height
+				height: displayOn.bounds.height,
 			}
 			: {
 				x: 200 + (!alphaChannel ? 0 : 192 * 2),
 				y: 30,
 				width: 192 * 2,
-				height: 108 * 2
+				height: 108 * 2,
 			};
 	if (!testing && alphaChannel && (!secondaryDisplay || !tertiaryDisplay)) {
 		return;
 	}
 	let displayWindow = new BrowserWindow(_.defaults(position, {
-		frame: false,
-		alwaysOnTop: true,
-		focusable: false,
+		frame: testing,
+		alwaysOnTop: !testing,
+		focusable: testing,
 		// fullscreen: true,
 		title: 'Titles - ' + (alphaChannel ? 'Alpha' : 'Display'),
 		backgroundColor: '#000000',
+		webPreferences: {
+			nodeIntegration: true,
+		},
 		// titleBarStyle: 'customButtonsOnHover'
 	}));
 	displayWindow.loadFile('display/index.html');
 	displayWindow.webContents.executeJavaScript(
-		`document.body.classList.add("${alphaChannel ? 'for' : 'not'}-alpha-channel")`
+		`document.body.classList.add("${alphaChannel ? 'for' : 'not'}-alpha-channel")`,
 	);
 	exports.windows.push(displayWindow);
 	// displayWindow.webContents.openDevTools();

@@ -16,7 +16,7 @@ ipcMain.on('change', pumpMessage('change'));
 function init() {
 	control.init();
 	display.init(true);
-	display.init(false)
+	display.init(false);
 }
 
 function cleanUp() {
@@ -28,7 +28,7 @@ function cleanUp() {
 function pumpMessage(key) {
 	return (evt, args) => {
 		display.windows.forEach(window =>
-			window.webContents.send(key, args)
+			window.webContents.send(key, args),
 		);
 	};
 }

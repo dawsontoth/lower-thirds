@@ -3,6 +3,8 @@ const electron = require('electron'),
 	{ BrowserWindow, app, globalShortcut } = electron,
 	store = new (require('../lib/store'))('control');
 
+const testing = true;
+
 let controlWindow;
 exports.init = createControlWindow;
 app.on('ready', registerHotKey);
@@ -36,6 +38,10 @@ function createControlWindow() {
 			height: 200,
 			title: 'Lower Thirds',
 			backgroundColor: '#000000',
+			acceptFirstMouse: true,
+			webPreferences: {
+				nodeIntegration: true,
+			},
 		},
 		position = store.get('control-window-position') || defaults;
 	if (position.width < defaults.width) {
@@ -47,10 +53,16 @@ function createControlWindow() {
 	controlWindow = exports.window = new BrowserWindow(_.defaults(position, defaults));
 	controlWindow.on('resize', saveState);
 	controlWindow.on('move', saveState);
-	controlWindow.loadFile('control/index.html');
-	// controlWindow.webContents.openDevTools();
-	controlWindow.maximize();
-	controlWindow.setFullScreen(true);
+	// TODO: Extract.
+	if (testing) {
+		controlWindow.loadURL('http://localhost:3000');
+	}
+	else {
+		controlWindow.loadFile('control/build/index.html');
+	}
+	controlWindow.webContents.openDevTools();
+	// controlWindow.maximize();
+	// controlWindow.setFullScreen(true);
 	controlWindow.on('closed', () => electron.app.quit());
 }
 
@@ -60,6 +72,6 @@ function saveState() {
 		x: bounds.x,
 		y: bounds.y,
 		width: bounds.width,
-		height: bounds.height
+		height: bounds.height,
 	});
 }

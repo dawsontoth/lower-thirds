@@ -1,10 +1,13 @@
-const path = require('path');
-const fs = require('fs');
+declare const path:any;
+declare const fs:any;
 
 const dataStore = 'data/store';
 
 class Store {
-	constructor(subPath) {
+	private readonly path:string;
+	private readonly data:any;
+
+	constructor(subPath:string) {
 		this.path = path.join(dataStore, subPath + '.json');
 		this.data = parseDataFile(this.path, {});
 	}
@@ -15,7 +18,7 @@ class Store {
 	 * @param [defaultValue]
 	 * @returns {*}
 	 */
-	get(key, defaultValue) {
+	get<T>(key:string, defaultValue?:T) {
 		return this.data[key] === undefined
 			? defaultValue
 			: this.data[key];
@@ -26,11 +29,17 @@ class Store {
 	 * @param key
 	 * @param val
 	 */
-	set(key, val) {
+	set<T>(key:string, val:T) {
+		if (this.data[key] === val
+			&& (!val || stringify(val) === stringify(this.data[key]))) {
+			// Already saved!
+			console.log('already saved', key, val);
+			return;
+		}
 		this.data[key] = val;
 		console.log('setting', key, val);
 		try {
-			fs.writeFileSync(this.path, JSON.stringify(this.data, null, '\t'), 'UTF-8');
+			fs.writeFile(this.path, stringify(this.data), 'UTF-8', (err:Error) => console.log(err || 'saved'));
 		}
 		catch (err) {
 			console.error('Store save failure', err);
@@ -39,7 +48,13 @@ class Store {
 	}
 }
 
-function parseDataFile(filePath, defaults) {
+export const persistentStore = new Store('control-web');
+
+function stringify(data:any) {
+	return JSON.stringify(data, null, '\t');
+}
+
+function parseDataFile(filePath:string, defaults:any) {
 	try {
 		if (!fs.existsSync(filePath)) {
 			return {};
@@ -51,5 +66,3 @@ function parseDataFile(filePath, defaults) {
 		return defaults;
 	}
 }
-
-module.exports = Store;

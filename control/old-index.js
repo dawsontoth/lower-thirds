@@ -1,6 +1,5 @@
 let ipc = require('electron').ipcRenderer,
 	suggest = require('./suggest'),
-	atem = require('./atem'),
 	store = new (require('../lib/store'))('presets');
 
 let userTyped = document.getElementById('user-typed'),
@@ -10,7 +9,7 @@ let isOn = false,
 	showingPreset = null,
 	editingPreset = null,
 	editingPresetAt = null,
-	presets = store.get('presets', []),
+	presets = store.get('presets', {}),
 	entry = '',
 	parsed = '';
 
@@ -42,7 +41,12 @@ function onKeyPress(evt) {
 	if (evt.key === 'Enter' || evt.key === 'Return') {
 		if (editingPreset) {
 			let preset = editingPreset;
-			presets[editingPresetAt] = parsed;
+			if (!parsed) {
+				delete presets[editingPresetAt];
+			}
+			else {
+				presets[editingPresetAt] = parsed;
+			}
 			store.set('presets', presets);
 			cancelEdit();
 			cleanState();
@@ -52,12 +56,6 @@ function onKeyPress(evt) {
 		else if (entry) {
 			showText(parsed);
 		}
-		else {
-			atem.cut();
-		}
-	}
-	else if (!entry && evt.key === ' ') {
-		atem.fade();
 	}
 	else if (evt.key.length === 1 && /[-,: \/A-Z\d]/i.test(evt.key)) {
 		entry += evt.key;
@@ -71,7 +69,7 @@ function showText(text) {
 	let parts = text && text.split('/');
 	ipc.send('change', {
 		title: (parts[0] || '').trim(),
-		subtitle: (parts[1] || '').trim()
+		subtitle: (parts[1] || '').trim(),
 	});
 	ipc.send('in');
 	syncClearStyling();

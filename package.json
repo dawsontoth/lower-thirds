@@ -4,24 +4,18 @@
 	"description": "Generates lower third titles",
 	"main": "main.js",
 	"scripts": {
-		"start": "set ELECTRON_ENABLE_LOGGING=1&&electron ."
+		"start": "set ELECTRON_ENABLE_LOGGING=1 && electron ."
 	},
 	"keywords": [],
 	"author": "Dawson Toth",
 	"repository": "https://github.com/dawsontoth/lower-thirds",
 	"license": "CC0-1.0",
 	"devDependencies": {
-		"electron": "^4.1.0",
-		"electron-rebuild": "^1.8.4"
+		"electron": "^7.1.5"
 	},
 	"dependencies": {
-		"async": "^3.0.1",
-		"autoit": "^1.1.10",
-		"fuse.js": "^3.4.4",
-		"ip": "^1.1.5",
 		"lodash": "^4.17.11",
-		"mz": "^2.7.0",
-		"node-fetch": "^2.6.0",
-		"sass": "^1.17.3"
+		"sass": "^1.17.3",
+		"react": "latest"
 	}
 }

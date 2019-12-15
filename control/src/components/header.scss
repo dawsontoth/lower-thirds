@@ -1,0 +1,104 @@
+@import '../utils/styles';
+
+$button-width: 1fr;
+$button-height: 60px;
+$center-width: 2fr;
+
+.header {
+	position: sticky;
+	top: 0;
+	display: grid;
+	grid-template-columns: [left] $button-width [center] $center-width [right] $button-width;
+	grid-template-rows: [top] $button-height [center] $button-height [bottom] $button-height;
+	grid-gap: 0;
+	z-index: 1;
+
+	button {
+		font-size: 1.3em;
+		position: relative;
+		text-align: left;
+		padding-left: 10%;
+
+		&.suggest {
+			padding-left: 30%;
+		}
+
+		&.active {
+			background-color: $color-positive;
+		}
+	}
+
+	input,
+	button {
+		background-color: $color-neutral;
+
+		&:hover {
+			background-color: $color-focus;
+		}
+	}
+
+	input:focus {
+		background-color: $color-positive;
+	}
+
+	.icon-status,
+	.icon-depict {
+		position: absolute;
+		top: 50%;
+		transform: translate(0, -50%);
+		width: 20px;
+		text-align: center;
+	}
+
+	.icon-status {
+		left: 10%;
+	}
+
+	.icon-depict {
+		right: 10%;
+	}
+
+	.suggest {
+		grid-column: left;
+
+		&-verse {
+			grid-row: top;
+		}
+
+		&-person {
+			grid-row: center;
+		}
+
+		&-custom {
+			grid-row: bottom;
+		}
+	}
+
+	.live-entry {
+		grid-column: center;
+
+		&.primary-line {
+			grid-row: top / span 2;
+		}
+
+		&.secondary-line {
+			grid-row: bottom;
+		}
+	}
+
+	.action {
+		grid-column: right;
+
+		&-show {
+			grid-row: top;
+		}
+
+		&-hide {
+			grid-row: center;
+		}
+
+		&-save {
+			grid-row: bottom;
+		}
+	}
+}

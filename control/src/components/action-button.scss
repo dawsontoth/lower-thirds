@@ -1,0 +1,20 @@
+@import '../utils/styles';
+
+.header .action {
+	&-show {
+		&:hover {
+			background-color: $color-preview;
+		}
+	}
+
+	&-hide {
+		&:hover {
+			background-color: $color-program;
+		}
+	}
+
+	&.disabled {
+		pointer-events: none;
+		color: $color-focus;
+	}
+}

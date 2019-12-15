@@ -1,0 +1,74 @@
+@import '../utils/styles';
+
+.card {
+	display: flex;
+	flex-direction: column;
+
+	user-select: none;
+	background: linear-gradient(135deg, $color-focus 0%, $color-neutral 100%);
+	margin: 6px;
+	border-radius: 6px;
+	box-shadow: 0 2px 2px $color-light;
+	flex: 0;
+	min-width: 200px;
+	text-align: left;
+	overflow: hidden;
+
+	&.showing {
+		.click-to-show, .click-to-show:hover {
+			background: $color-program;
+		}
+	}
+
+	.click-to-show {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		padding: 12px 12px 6px;
+		cursor: pointer;
+
+		&:hover {
+			background-color: $color-preview;
+		}
+
+		.primary {
+			flex: 1;
+			font-size: 1.5em;
+		}
+
+		.secondary {
+			flex: 1;
+			font-size: 1.2em;
+			font-weight: lighter;
+		}
+
+		.action {
+			flex: initial;
+			margin-top: 12px;
+			font-size: 0.8em;
+		}
+	}
+
+	.key-hint {
+		margin-left: 10px;
+	}
+
+	.footer {
+		flex: initial;
+		text-align: right;
+	}
+
+	button {
+		padding: 6px 12px;
+
+		i {
+			margin-left: 6px;
+		}
+
+		&:hover {
+			&.action-delete {
+				background-color: $color-program;
+			}
+		}
+	}
+}
