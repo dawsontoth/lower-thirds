@@ -53,14 +53,13 @@ function createControlWindow() {
 	controlWindow = exports.window = new BrowserWindow(_.defaults(position, defaults));
 	controlWindow.on('resize', saveState);
 	controlWindow.on('move', saveState);
-	// TODO: Extract.
 	if (testing) {
 		controlWindow.loadURL('http://localhost:3000');
 	}
 	else {
 		controlWindow.loadFile('control/build/index.html');
 	}
-	controlWindow.webContents.openDevTools();
+	// controlWindow.webContents.openDevTools();
 	// controlWindow.maximize();
 	// controlWindow.setFullScreen(true);
 	controlWindow.on('closed', () => electron.app.quit());

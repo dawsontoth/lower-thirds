@@ -1,7 +1,8 @@
 import React from 'react';
-import { areDifferent, areEqual, IPrimarySecondary } from '../models/primary-secondary';
 import { useDisplayed } from '../hooks/displayed';
 import { usePresets } from '../hooks/presets';
+import { bindLatestShortcut } from '../hooks/shortcut';
+import { areDifferent, areEqual, IPrimarySecondary } from '../models/primary-secondary';
 import './card.scss';
 
 export function Card({ pair, index }:{ pair:IPrimarySecondary, index:number }) {
@@ -13,11 +14,17 @@ export function Card({ pair, index }:{ pair:IPrimarySecondary, index:number }) {
 	const del = () => {
 		setPresets(presets.filter(p => areDifferent(p, pair)));
 	};
+	const onClick = () => setDisplayed(showing ? null : pair);
+
+	if (index < 10) {
+		bindLatestShortcut(String(index < 9 ? index + 1 : 0), onClick);
+	}
 
 	return (
 		<div className={ `card ${ showing ? ' showing' : '' }` }>
 			<div className="click-to-show"
-				 onClick={ () => setDisplayed(showing ? null : pair) }>
+				 onClick={ onClick }
+				 onDoubleClick={ onClick }>
 				<div className="primary">{ pair.primary }</div>
 				<div className="secondary">{ pair.secondary }</div>
 

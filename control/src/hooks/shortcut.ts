@@ -5,7 +5,7 @@ const latest:{ [key:string]:undefined | (() => void) } = {};
 window.onkeydown = onKeyDown;
 window.onkeypress = onKeyPress;
 
-export function bindLatestShortcut(shortcut:Shortcut, triggers:undefined | (() => void)) {
+export function bindLatestShortcut(shortcut:Shortcut | string, triggers:undefined | (() => void)) {
 	latest[shortcut] = triggers;
 }
 
@@ -16,20 +16,43 @@ function onKeyDown(evt:{ key:string }) {
 	}
 }
 
-function onKeyPress(evt:{ key:string, metaKey:boolean, ctrlKey:boolean }) {
+function onKeyPress(evt:KeyboardEvent) {
 	if (evt.key === 'Enter' || evt.key === 'Return') {
 		tryInvoke(Shortcut.Enter);
 		return false;
 	}
-	else if ((evt.metaKey || evt.ctrlKey) && evt.key === 's') {
-		tryInvoke(Shortcut.CtrlS);
-		return false;
+	if (evt.altKey || evt.metaKey || evt.ctrlKey) {
+		switch (evt.key) {
+			case 's':
+				tryInvoke(Shortcut.CtrlS);
+				return false;
+			case '1':
+			case '2':
+			case '3':
+			case '4':
+			case '5':
+			case '6':
+			case '7':
+			case '8':
+			case '9':
+				if (tryInvoke(evt.key)) {
+					return false;
+				}
+				break;
+			case '0':
+				if (tryInvoke('10')) {
+					return false;
+				}
+				break;
+		}
 	}
 }
 
-function tryInvoke(shortcut:Shortcut) {
+function tryInvoke(shortcut:Shortcut | string) {
 	let toInvoke = latest[shortcut];
 	if (toInvoke) {
 		toInvoke();
+		return true;
 	}
+	return false;
 }

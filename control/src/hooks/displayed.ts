@@ -1,6 +1,6 @@
-import { useLayoutEffect, useState } from 'react';
 import { BehaviorSubject } from 'rxjs';
 import { IPrimarySecondary } from '../models/primary-secondary';
+import { useBehaviorSubject } from './base';
 
 type Displayed = IPrimarySecondary | null;
 declare const ipc:any;
@@ -22,11 +22,5 @@ const change = (displayed:Displayed) => {
 };
 
 export function useDisplayed():[Displayed, (newDisplayed:Displayed) => void] {
-	const [current, setCurrent] = useState(subject.value);
-
-	useLayoutEffect(() => {
-		subject.subscribe(setCurrent);
-	}, []);
-
-	return [current, change];
+	return useBehaviorSubject(subject, change);
 }

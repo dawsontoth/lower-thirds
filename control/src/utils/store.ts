@@ -33,13 +33,11 @@ class Store {
 		if (this.data[key] === val
 			&& (!val || stringify(val) === stringify(this.data[key]))) {
 			// Already saved!
-			console.log('already saved', key, val);
 			return;
 		}
 		this.data[key] = val;
-		console.log('setting', key, val);
 		try {
-			fs.writeFile(this.path, stringify(this.data), 'UTF-8', (err:Error) => console.log(err || 'saved'));
+			fs.writeFile(this.path, stringify(this.data), 'UTF-8', (err:Error) => null);
 		}
 		catch (err) {
 			console.error('Store save failure', err);

@@ -1,8 +1,8 @@
-import { useLayoutEffect, useState } from 'react';
 import { BehaviorSubject } from 'rxjs';
+import { StoreKeys } from '../models/keys';
 import { IPrimarySecondary } from '../models/primary-secondary';
 import { persistentStore } from '../utils/store';
-import { StoreKeys } from '../models/keys';
+import { useBehaviorSubject } from './base';
 
 const storeKey = StoreKeys.Presets;
 
@@ -14,11 +14,5 @@ const change = (presets:IPrimarySecondary[]) => {
 };
 
 export function usePresets():[IPrimarySecondary[], (newLines:IPrimarySecondary[]) => void] {
-	const [current, setCurrent] = useState(subject.value);
-
-	useLayoutEffect(() => {
-		subject.subscribe(setCurrent);
-	}, []);
-
-	return [current, change];
+	return useBehaviorSubject(subject, change);
 }
