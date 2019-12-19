@@ -3,7 +3,7 @@ const electron = require('electron'),
 	{ BrowserWindow, app, globalShortcut } = electron,
 	store = new (require('../lib/store'))('control');
 
-const testing = true;
+const testing = false;
 
 let controlWindow;
 exports.init = createControlWindow;

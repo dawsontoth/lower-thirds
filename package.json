@@ -4,7 +4,8 @@
 	"description": "Generates lower third titles",
 	"main": "main.js",
 	"scripts": {
-		"start": "set ELECTRON_ENABLE_LOGGING=1 && electron ."
+		"start": "set ELECTRON_ENABLE_LOGGING=1 && electron .",
+		"scss": "node-sass ./display/ -o ./display/ --watch"
 	},
 	"keywords": [],
 	"author": "Dawson Toth",
@@ -15,7 +16,8 @@
 	},
 	"dependencies": {
 		"lodash": "^4.17.11",
-		"sass": "^1.17.3",
-		"react": "latest"
+		"node-sass": "^4.13.0",
+		"react": "latest",
+		"sass": "^1.17.3"
 	}
 }
