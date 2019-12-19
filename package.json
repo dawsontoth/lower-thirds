@@ -4,8 +4,8 @@
 	"description": "Generates lower third titles",
 	"main": "main.js",
 	"scripts": {
-		"start": "set ELECTRON_ENABLE_LOGGING=1 && electron .",
-		"scss": "node-sass ./display/ -o ./display/ --watch"
+		"start:electron": "set ELECTRON_ENABLE_LOGGING=1 && electron .",
+		"scss": "node-sass ./display/index.scss ./display/index.css --watch"
 	},
 	"keywords": [],
 	"author": "Dawson Toth",

@@ -1,8 +1,7 @@
 const electron = require('electron'),
+	testing = require('../config').testing,
 	_ = require('lodash'),
 	{ BrowserWindow } = electron;
-
-let testing = true;
 
 exports.windows = [];
 exports.init = createDisplayWindow;
@@ -33,18 +32,21 @@ function createDisplayWindow(alphaChannel) {
 		frame: testing,
 		alwaysOnTop: !testing,
 		focusable: testing,
-		// fullscreen: true,
+		fullscreen: testing,
 		title: 'Titles - ' + (alphaChannel ? 'Alpha' : 'Display'),
 		backgroundColor: '#000000',
 		webPreferences: {
 			nodeIntegration: true,
 		},
-		// titleBarStyle: 'customButtonsOnHover'
 	}));
-	displayWindow.loadFile('display/index.html');
+	if (testing) {
+		displayWindow.loadURL('http://localhost:3001');
+	}
+	else {
+		displayWindow.loadFile('display/build/index.html');
+	}
 	displayWindow.webContents.executeJavaScript(
 		`document.body.classList.add("${alphaChannel ? 'for' : 'not'}-alpha-channel")`,
 	);
 	exports.windows.push(displayWindow);
-	// displayWindow.webContents.openDevTools();
 }

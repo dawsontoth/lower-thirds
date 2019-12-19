@@ -1,5 +1,5 @@
 {
-  "name": "control",
+  "name": "display",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,7 +10,7 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-    "fuse.js": "^3.4.6",
+    "animejs": "^3.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "3.3.0",
@@ -18,7 +18,7 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start:control": "react-scripts start",
+    "start:display": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -26,7 +26,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "homepage": "./",
   "browserslist": {
     "production": [
       ">0.2%",

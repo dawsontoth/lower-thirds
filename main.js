@@ -9,9 +9,7 @@ const { app, ipcMain } = require('electron'),
 app.on('ready', init);
 app.on('window-all-closed', cleanUp);
 
-ipcMain.on('in', pumpMessage('in'));
-ipcMain.on('out', pumpMessage('out'));
-ipcMain.on('change', pumpMessage('change'));
+ipcMain.on('change-lower-third', pumpMessage('change-lower-third'));
 
 function init() {
 	control.init();

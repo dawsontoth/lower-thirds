@@ -8,16 +8,10 @@ declare const ipc:any;
 const subject = new BehaviorSubject<Displayed>(null);
 
 const change = (displayed:Displayed) => {
-	if (displayed?.primary || displayed?.secondary) {
-		ipc.send('change', {
-			title: (displayed?.primary || '').trim(),
-			subtitle: (displayed?.secondary || '').trim(),
-		});
-		ipc.send('in');
-	}
-	else {
-		ipc.send('out');
-	}
+	ipc.send('change-lower-third', {
+		primary: (displayed?.primary || '').trim(),
+		secondary: (displayed?.secondary || '').trim(),
+	});
 	subject.next(displayed);
 };
 

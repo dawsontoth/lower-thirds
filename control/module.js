@@ -1,9 +1,8 @@
 const electron = require('electron'),
+	testing = require('../config').testing,
 	_ = require('lodash'),
 	{ BrowserWindow, app, globalShortcut } = electron,
 	store = new (require('../lib/store'))('control');
-
-const testing = false;
 
 let controlWindow;
 exports.init = createControlWindow;
@@ -59,7 +58,6 @@ function createControlWindow() {
 	else {
 		controlWindow.loadFile('control/build/index.html');
 	}
-	// controlWindow.webContents.openDevTools();
 	// controlWindow.maximize();
 	// controlWindow.setFullScreen(true);
 	controlWindow.on('closed', () => electron.app.quit());
