@@ -17,12 +17,14 @@ function onKeyDown(evt:{ key:string }) {
 }
 
 function onKeyPress(evt:KeyboardEvent) {
+	console.log(evt);
 	if (evt.key === 'Enter' || evt.key === 'Return') {
 		tryInvoke(Shortcut.Enter);
 		return false;
 	}
 	if (evt.altKey || evt.metaKey || evt.ctrlKey) {
 		switch (evt.key) {
+			case '':
 			case 's':
 				tryInvoke(Shortcut.CtrlS);
 				return false;

@@ -9,8 +9,8 @@ exports.init = createDisplayWindow;
 function createDisplayWindow(alphaChannel) {
 	let screen = electron.screen,
 		displays = screen.getAllDisplays().sort((a, b) => a.bounds.x - b.bounds.x),
-		secondaryDisplay = displays.find(display => display.bounds.x || display.bounds.y),
-		tertiaryDisplay = secondaryDisplay && displays.find(display => (display.bounds.x || display.bounds.y) && display !== secondaryDisplay),
+		secondaryDisplay = displays.length > 2 && displays[displays.length - 2],
+		tertiaryDisplay = displays.length > 2 && displays[displays.length - 1],
 		displayOn = alphaChannel ? tertiaryDisplay : secondaryDisplay,
 		position = displayOn
 			? {
@@ -29,12 +29,12 @@ function createDisplayWindow(alphaChannel) {
 		return;
 	}
 	let displayWindow = new BrowserWindow(_.defaults(position, {
-		frame: testing,
-		alwaysOnTop: !testing,
-		focusable: testing,
-		fullscreen: testing,
+		frame: false,
+		alwaysOnTop: true,
+		focusable: true,
+		fullscreen: false,
 		title: 'Titles - ' + (alphaChannel ? 'Alpha' : 'Display'),
-		backgroundColor: '#000000',
+		backgroundColor: '#000',
 		webPreferences: {
 			nodeIntegration: true,
 		},
