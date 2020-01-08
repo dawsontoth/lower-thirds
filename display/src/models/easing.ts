@@ -2,37 +2,37 @@
  * https://github.com/streamich/ts-easing/blob/master/src/index.ts
  */
 
-export type TEasing = (time:number) => number;
+export type TEasing = (time: number) => number;
 
 export interface IEasingMap {
-	linear:TEasing;
-	quadratic:TEasing;
-	cubic:TEasing;
-	elastic:TEasing;
-	inQuad:TEasing;
-	outQuad:TEasing;
-	inOutQuad:TEasing;
-	inCubic:TEasing;
-	outCubic:TEasing;
-	inOutCubic:TEasing;
-	inQuart:TEasing;
-	outQuart:TEasing;
-	inOutQuart:TEasing;
-	inQuint:TEasing;
-	outQuint:TEasing;
-	inOutQuint:TEasing;
-	inSine:TEasing;
-	outSine:TEasing;
-	inOutSine:TEasing;
-	inExpo:TEasing;
-	outExpo:TEasing;
-	inOutExpo:TEasing;
-	inCirc:TEasing;
-	outCirc:TEasing;
-	inOutCirc:TEasing;
+	linear: TEasing;
+	quadratic: TEasing;
+	cubic: TEasing;
+	elastic: TEasing;
+	inQuad: TEasing;
+	outQuad: TEasing;
+	inOutQuad: TEasing;
+	inCubic: TEasing;
+	outCubic: TEasing;
+	inOutCubic: TEasing;
+	inQuart: TEasing;
+	outQuart: TEasing;
+	inOutQuart: TEasing;
+	inQuint: TEasing;
+	outQuint: TEasing;
+	inOutQuint: TEasing;
+	inSine: TEasing;
+	outSine: TEasing;
+	inOutSine: TEasing;
+	inExpo: TEasing;
+	outExpo: TEasing;
+	inOutExpo: TEasing;
+	inCirc: TEasing;
+	outCirc: TEasing;
+	inOutCirc: TEasing;
 }
 
-export const easing:IEasingMap = {
+export const easing: IEasingMap = {
 	// No easing, no acceleration
 	linear: (t) => t,
 

@@ -1,104 +1,99 @@
 @import '../utils/styles';
 
-$button-width: 1fr;
-$button-height: 60px;
-$center-width: 2fr;
+header {
+  position: relative;
+  display: grid;
+  grid-template-columns: [left] $button-width [center] $center-width [right] $button-width;
+  grid-template-rows: [top] $button-height [center] $button-height [bottom] $button-height;
+  grid-gap: 0;
+  z-index: 1;
 
-.header {
-	position: sticky;
-	top: 0;
-	display: grid;
-	grid-template-columns: [left] $button-width [center] $center-width [right] $button-width;
-	grid-template-rows: [top] $button-height [center] $button-height [bottom] $button-height;
-	grid-gap: 0;
-	z-index: 1;
+  &.is-hidden {
+    position: absolute;
+    bottom: 100%;
+  }
 
-	button {
-		font-size: 1.3em;
-		position: relative;
-		text-align: left;
-		padding-left: 10%;
+  button {
+    font-size: 1.3em;
+    position: relative;
+    text-align: left;
+    padding-left: 10%;
 
-		&.suggest {
-			padding-left: 30%;
-		}
+    &.suggest {
+      padding-left: 30%;
+    }
 
-		&.active {
-			background-color: $color-positive;
-		}
-	}
+    &.active {
+      background-color: $color-positive;
+    }
+  }
 
-	input,
-	button {
-		background-color: $color-neutral;
+  input,
+  button {
+    background-color: $color-neutral;
 
-		&:hover {
-			background-color: $color-light;
-		}
-	}
+    &:hover {
+      background-color: $color-light;
+    }
+  }
 
-	input:focus {
-		background-color: $color-positive;
-	}
+  input:focus {
+    background-color: $color-positive;
+  }
 
-	.icon-status,
-	.icon-depict {
-		position: absolute;
-		top: 50%;
-		transform: translate(0, -50%);
-		width: 20px;
-		text-align: center;
-	}
+  .suggest {
+    grid-column: left;
 
-	.icon-status {
-		left: 10%;
-	}
+    &-verse {
+      grid-row: top;
+    }
 
-	.icon-depict {
-		right: 10%;
-	}
+    &-person {
+      grid-row: center;
+    }
 
-	.suggest {
-		grid-column: left;
+    &-custom {
+      grid-row: bottom;
+    }
+  }
 
-		&-verse {
-			grid-row: top;
-		}
+  .live-entry {
+    grid-column: center;
 
-		&-person {
-			grid-row: center;
-		}
+    &.primary-line {
+      grid-row: top / span 2;
+    }
 
-		&-custom {
-			grid-row: bottom;
-		}
-	}
+    &.secondary-line {
+      grid-row: bottom;
+    }
+  }
 
-	.live-entry {
-		grid-column: center;
+  .action {
+    grid-column: right;
 
-		&.primary-line {
-			grid-row: top / span 2;
-		}
+    &-show {
+      grid-row: top;
+    }
 
-		&.secondary-line {
-			grid-row: bottom;
-		}
-	}
+    &-hide {
+      grid-row: center;
+    }
 
-	.action {
-		grid-column: right;
+    &-save {
+      grid-row: bottom;
+    }
+  }
 
-		&-show {
-			grid-row: top;
-		}
-
-		&-hide {
-			grid-row: center;
-		}
-
-		&-save {
-			grid-row: bottom;
-		}
-	}
+  .hide {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    border-radius: 0 0 50% 0;
+    box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.8);
+  }
 }

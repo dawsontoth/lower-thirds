@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react';
 
 export function useAnimationTimer(duration = 1000, delay = 0)
-	:[number, boolean, (value:boolean) => void] {
+	: [number, boolean, (value: boolean) => void] {
 	const [elapsed, setTime] = useState(0);
 	const [reversed, setReversed] = useState(false);
 
 	useEffect(
 		() => {
 			const interrupted = elapsed !== 0 && elapsed !== duration;
-			let animationFrame:number;
-			let timerStop:any;
-			let start:number;
+			let animationFrame: number;
+			let timerStop: any;
+			let start: number;
 			let relativeDuration = duration - (interrupted ? elapsed : 0);
 
 			// Function to be executed on each animation frame

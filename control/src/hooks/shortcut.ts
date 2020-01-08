@@ -1,23 +1,22 @@
 import { Shortcut } from '../models/shortcut';
 
-const latest:{ [key:string]:undefined | (() => void) } = {};
+const latest: { [key: string]: undefined | (() => void) } = {};
 
 window.onkeydown = onKeyDown;
 window.onkeypress = onKeyPress;
 
-export function bindLatestShortcut(shortcut:Shortcut | string, triggers:undefined | (() => void)) {
+export function bindLatestShortcut(shortcut: Shortcut | string, triggers: undefined | (() => void)) {
 	latest[shortcut] = triggers;
 }
 
-function onKeyDown(evt:{ key:string }) {
+function onKeyDown(evt: { key: string }) {
 	if (evt.key === 'Escape') {
 		tryInvoke(Shortcut.Escape);
 		return false;
 	}
 }
 
-function onKeyPress(evt:KeyboardEvent) {
-	console.log(evt);
+function onKeyPress(evt: KeyboardEvent) {
 	if (evt.key === 'Enter' || evt.key === 'Return') {
 		tryInvoke(Shortcut.Enter);
 		return false;
@@ -50,7 +49,7 @@ function onKeyPress(evt:KeyboardEvent) {
 	}
 }
 
-function tryInvoke(shortcut:Shortcut | string) {
+function tryInvoke(shortcut: Shortcut | string) {
 	let toInvoke = latest[shortcut];
 	if (toInvoke) {
 		toInvoke();

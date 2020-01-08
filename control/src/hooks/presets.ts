@@ -8,11 +8,11 @@ const storeKey = StoreKeys.Presets;
 
 const subject = new BehaviorSubject(persistentStore.get<IPrimarySecondary[]>(storeKey, []));
 
-const change = (presets:IPrimarySecondary[]) => {
+const change = (presets: IPrimarySecondary[]) => {
 	persistentStore.set(storeKey, presets);
 	subject.next(presets);
 };
 
-export function usePresets():[IPrimarySecondary[], (newLines:IPrimarySecondary[]) => void] {
+export function usePresets(): [IPrimarySecondary[], (newLines: IPrimarySecondary[]) => void] {
 	return useBehaviorSubject(subject, change);
 }

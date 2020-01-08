@@ -1,52 +1,52 @@
 $easing: cubic-bezier(.19, .76, .32, 1);
 
 .lower-third {
-	position: absolute;
-	bottom: 8%;
-	left: 10%;
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	flex-direction: column;
-	padding-left: 3.3em;
+  position: absolute;
+  bottom: 8%;
+  left: 10%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-direction: column;
+  padding-left: 3.3em;
 
-	> * {
-		text-shadow: 0 3px 6px #000;
-	}
+  > * {
+    text-shadow: 0 3px 6px #000;
+  }
 
-	.slash {
-		position: absolute;
-		color: #cf4c4e;
-		left: 0;
-		bottom: -0.2em;
-		font-size: 11em;
-	}
+  .slash {
+    position: absolute;
+    color: #cf4c4e;
+    left: 0;
+    bottom: -0.2em;
+    font-size: 11em;
+  }
 
-	.primary {
-		font-size: 5.7em;
-		font-weight: 300;
-	}
+  .primary {
+    font-size: 5.7em;
+    font-weight: 300;
+  }
 
-	.secondary {
-		font-size: 2em;
-		font-weight: 300;
-	}
+  .secondary {
+    font-size: 2em;
+    font-weight: 300;
+  }
 
-	&.has-secondary {
-		.primary {
-			padding-left: 0.2em;
-			font-size: 4em;
-			left: 3em;
-		}
-	}
+  &.has-secondary {
+    .primary {
+      padding-left: 0.2em;
+      font-size: 4em;
+      left: 3em;
+    }
+  }
 }
 
 .for-alpha-channel .lower-third {
-	.slash {
-		color: #fff;
-	}
+  .slash {
+    color: #fff;
+  }
 
-	> * {
-		text-shadow: 0 3px 6px white;
-	}
+  > * {
+    text-shadow: 0 3px 6px white;
+  }
 }

@@ -4,12 +4,12 @@ import { SuggestionMode } from '../models/suggestion-mode';
 import { useInput } from './input';
 import { useSuggestionMode } from './suggestion-mode';
 
-declare const fs:any;
+declare const fs: any;
 
 const names = fuse('data/names.txt');
 const books = fuse('data/books.txt');
 
-export function useSuggestion():[IPrimarySecondary] {
+export function useSuggestion(): [IPrimarySecondary] {
 	const [currentInput] = useInput();
 	const [suggestionMode] = useSuggestionMode();
 	let matches;
@@ -20,7 +20,7 @@ export function useSuggestion():[IPrimarySecondary] {
 			if (matches.length) {
 				const firstResult = matches[0];
 				const parts = firstResult.matches[0].value.split('/');
-				const result = { ...currentInput };
+				const result = {...currentInput};
 				result.primary = parts[0];
 				if (parts[1]) {
 					result.secondary = parts[1];
@@ -54,7 +54,7 @@ export function useSuggestion():[IPrimarySecondary] {
 				const value = match.value;
 				const suffix = (value && reference ? ' ' : '')
 					+ (reference ? reference.slice(1).join(':') : '');
-				const result = { ...currentInput };
+				const result = {...currentInput};
 				result.primary = value + suffix;
 				return [result];
 			}
@@ -64,11 +64,11 @@ export function useSuggestion():[IPrimarySecondary] {
 	return [currentInput];
 }
 
-function fuse(txtDataStore:string) {
+function fuse(txtDataStore: string) {
 	return new Fuse(
 		fs.readFileSync(txtDataStore, 'UTF-8')
 			.split('\n')
-			.map((l:string) => l.trim())
+			.map((l: string) => l.trim())
 			.filter(Boolean),
 		{
 			shouldSort: true,

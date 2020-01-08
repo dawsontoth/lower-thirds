@@ -3,11 +3,11 @@ import { IPrimarySecondary } from '../models/primary-secondary';
 import { useBehaviorSubject } from './base';
 
 type Displayed = IPrimarySecondary | null;
-declare const ipc:any;
+declare const ipc: any;
 
 const subject = new BehaviorSubject<Displayed>(null);
 
-const change = (displayed:Displayed) => {
+const change = (displayed: Displayed) => {
 	ipc.send('change-lower-third', {
 		primary: (displayed?.primary || '').trim(),
 		secondary: (displayed?.secondary || '').trim(),
@@ -15,6 +15,6 @@ const change = (displayed:Displayed) => {
 	subject.next(displayed);
 };
 
-export function useDisplayed():[Displayed, (newDisplayed:Displayed) => void] {
+export function useDisplayed(): [Displayed, (newDisplayed: Displayed) => void] {
 	return useBehaviorSubject(subject, change);
 }

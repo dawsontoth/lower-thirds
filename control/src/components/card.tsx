@@ -5,7 +5,7 @@ import { bindLatestShortcut } from '../hooks/shortcut';
 import { areDifferent, areEqual, IPrimarySecondary } from '../models/primary-secondary';
 import './card.scss';
 
-export function Card({ pair, index }:{ pair:IPrimarySecondary, index:number }) {
+export function Card({pair, index}: { pair: IPrimarySecondary, index: number }) {
 	const [displayed, setDisplayed] = useDisplayed();
 	const [presets, setPresets] = usePresets();
 
@@ -21,20 +21,19 @@ export function Card({ pair, index }:{ pair:IPrimarySecondary, index:number }) {
 	}
 
 	return (
-		<div className={ `card ${ showing ? ' showing' : '' }` }>
+		<div className={`card ${showing ? ' showing' : ''}`}>
 			<div className="click-to-show"
-				 onClick={ onClick }
-				 onDoubleClick={ onClick }>
-				<div className="primary">{ pair.primary }</div>
-				<div className="secondary">{ pair.secondary }</div>
-
-				<div className="action">
-					{ showing ? 'Hide' : 'Show' }
-					<span className="key-hint">{ index + 1 }</span>
-				</div>
+			     onClick={onClick}
+			     onDoubleClick={onClick}>
+				<div className="primary">{pair.primary}</div>
+				<div className="secondary">{pair.secondary}</div>
+				{/*<div className="action">*/}
+				{/*	{showing ? 'Hide' : 'Show'}*/}
+				{/*	<span className="key-hint">{index + 1}</span>*/}
+				{/*</div>*/}
 			</div>
 			<div className="footer">
-				<button onDoubleClick={ del } className="action action-delete" type="button">
+				<button onDoubleClick={del} className="action action-delete" type="button">
 					Delete
 					<i className="icon-depict fad fa-trash"/>
 				</button>

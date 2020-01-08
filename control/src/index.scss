@@ -1,34 +1,71 @@
 @import 'utils/styles';
 
 body {
-	margin: 0;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-	'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-	sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	color: white;
-	background-color: $color-background;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: white;
+  background-color: $color-background;
+}
+
+html, body, #root, .App {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+
+  header, footer {
+    flex: initial;
+  }
+  section {
+    margin-bottom: auto;
+    overflow: auto;
+  }
 }
 
 .key-hint {
-	font-size: 0.7em;
-	font-weight: lighter;
+  font-size: 0.7em;
+  font-weight: lighter;
 }
 
 button {
-	cursor: pointer;
-	user-select: none;
+  cursor: pointer;
+  user-select: none;
 }
 
 input,
 button {
-	border: none;
-	color: white;
-	outline: none;
-	background-color: transparent;
+  border: none;
+  color: white;
+  outline: none;
+  background-color: transparent;
 }
 
 button:focus {
-	background-color: $color-positive;
+  background-color: $color-positive;
+}
+
+.icon-status,
+.icon-depict {
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  width: 20px;
+  text-align: center;
+}
+
+.icon-status {
+  left: 10%;
+}
+
+.icon-depict {
+  right: 10%;
 }

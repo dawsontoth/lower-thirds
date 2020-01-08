@@ -10,7 +10,7 @@ import { Shortcut } from '../models/shortcut';
 import { focusPrimary } from '../utils/focus-primary';
 import './action-button.scss';
 
-export function ActionButton({ action, icon, shortcut }:{ action:Action, icon:string, shortcut:Shortcut }) {
+export function ActionButton({action, icon, shortcut}: { action: Action, icon: string, shortcut?: Shortcut }) {
 	const [currentSuggestion] = useSuggestion();
 	const [, setInput] = useInput();
 	const [displayed, setDisplayed] = useDisplayed();
@@ -18,7 +18,7 @@ export function ActionButton({ action, icon, shortcut }:{ action:Action, icon:st
 
 	let enabled = true;
 	let onClick = undefined;
-	const emptyInput = { primary: '', secondary: '' };
+	const emptyInput = {primary: '', secondary: ''};
 
 	// TODO: This feels a bit dirty...
 	switch (action) {
@@ -27,7 +27,7 @@ export function ActionButton({ action, icon, shortcut }:{ action:Action, icon:st
 				&& (!displayed || areDifferent(displayed, currentSuggestion)));
 			onClick = enabled
 				? () => {
-					setDisplayed({ ...currentSuggestion });
+					setDisplayed({...currentSuggestion});
 					focusPrimary();
 				}
 				: focusPrimary;
@@ -51,7 +51,7 @@ export function ActionButton({ action, icon, shortcut }:{ action:Action, icon:st
 				&& !presets.find(p => areEqual(currentSuggestion, p)));
 			onClick = enabled
 				? () => {
-					setPresets([...presets, { ...currentSuggestion }]);
+					setPresets([...presets, {...currentSuggestion}]);
 					setInput(emptyInput);
 					focusPrimary();
 				}
@@ -59,15 +59,17 @@ export function ActionButton({ action, icon, shortcut }:{ action:Action, icon:st
 			break;
 	}
 
-	bindLatestShortcut(shortcut, onClick);
+	if (shortcut) {
+		bindLatestShortcut(shortcut, onClick);
+	}
 
 	return (
-		<button className={ `action action-${ action.toLowerCase() } ${ enabled ? '' : ' disabled' }` }
-				onClick={ onClick }
-				type="button">
-			{ action }
-			<i className={ 'icon-depict ' + icon }/>
-			<div className="key-hint">{ shortcut }</div>
+		<button className={`action action-${action.replace(/ /g, '-').toLowerCase()} ${enabled ? '' : ' disabled'}`}
+		        onClick={onClick}
+		        type="button">
+			{action}
+			<i className={'icon-depict ' + icon}/>
+			<div className="key-hint">{shortcut}</div>
 		</button>
 	);
 }
