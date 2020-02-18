@@ -68,6 +68,10 @@ footer {
         background-color: $color-preview;
       }
 
+      &.connect {
+        background-color: $color-preview;
+      }
+
       &.pause {
         background-color: $color-action;
       }
@@ -77,4 +81,22 @@ footer {
       }
     }
   }
+
+  span, .connect {
+    grid-row: top / span 2;
+    grid-column: first / span 8;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+      margin: 0 6px;
+    }
+  }
+
+  .error {
+    background-color: $color-program;
+    border-radius: 5px 5px 0 0;
+  }
+
 }

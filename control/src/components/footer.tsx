@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+	connect,
 	pauseFacebook,
 	pauseRecording,
 	PossibleStates,
@@ -7,34 +8,41 @@ import {
 	startRecording,
 	stopFacebook,
 	stopRecording,
+	useConnected,
+	useConnecting,
+	useError,
 	useFacebookState,
 	useRecordingState,
 } from '../hooks/cerevo';
 import './footer.scss';
 
 export function Footer() {
+	const connecting = useConnecting();
+	const connected = useConnected();
+	const error = useError();
+	return (
+		<footer>
+			{error && <span className="error">
+				<i className="fal fa-exclamation-triangle"/>
+				{error}
+                <a href="#" onClick={() => window.location.reload()}> Reload</a>
+			</span>}
+			{connecting && <span className="connecting"><i className="fas fa-sync fa-spin"/></span>}
+			{!connected && !connecting && !error && <button type="button" className="connect" onClick={connect}>
+                <i className="fad fa-power-off"/> Connect
+            </button>}
+			{connected && <ConnectedFooter/>}
+		</footer>
+	);
+}
+
+function ConnectedFooter() {
 	const recordingState = useRecordingState();
 	const facebookState = useFacebookState();
 	return (
-		<footer>
-			<dt className={'first ' + facebookState}>Stream</dt>
-			<dd className={'first ' + facebookState}>{translateState(facebookState, 'Connecting...')}</dd>
-			<button type="button" className="start"
-			        onClick={startFacebook}
-			        disabled={facebookState !== 'pause' && facebookState !== 'stop'}><i className="fad fa-play-circle"/>
-			</button>
-			<button type="button" className="pause"
-			        onClick={pauseFacebook}
-			        disabled={facebookState !== 'start'}><i
-				className="fad fa-pause-circle"/></button>
-			<button type="button" className="stop"
-			        onClick={stopFacebook}
-			        disabled={facebookState !== 'pause' && facebookState !== 'start'}><i
-				className="fad fa-stop-circle"/>
-			</button>
-
-			<dt className={'second ' + recordingState}>Recording</dt>
-			<dd className={'second ' + recordingState}>{translateState(recordingState, '... to Cerevo!')}</dd>
+		<>
+			<dt className={'first ' + recordingState}>SD Card</dt>
+			<dd className={'first ' + recordingState}>{translateState(recordingState)}</dd>
 			<button type="button" className="start"
 			        onClick={startRecording}
 			        disabled={recordingState !== 'pause' && recordingState !== 'stop'}><i
@@ -47,11 +55,28 @@ export function Footer() {
 			        onClick={stopRecording}
 			        disabled={recordingState !== 'pause' && recordingState !== 'start'}><i
 				className="fad fa-stop-circle"/></button>
-		</footer>
+
+			<dt className={'second ' + facebookState}>Facebook</dt>
+			<dd className={'second ' + facebookState}>{translateState(facebookState)}</dd>
+			<button type="button" className="start"
+			        onClick={startFacebook}
+			        disabled={facebookState !== 'pause' && facebookState !== 'stop'}><i
+				className="fad fa-play-circle"/>
+			</button>
+			<button type="button" className="pause"
+			        onClick={pauseFacebook}
+			        disabled={facebookState !== 'start'}><i
+				className="fad fa-pause-circle"/></button>
+			<button type="button" className="stop"
+			        onClick={stopFacebook}
+			        disabled={facebookState !== 'pause' && facebookState !== 'start'}><i
+				className="fad fa-stop-circle"/>
+			</button>
+		</>
 	);
 }
 
-function translateState(val: PossibleStates, def: string): string {
+function translateState(val: PossibleStates): string {
 	switch (val) {
 		case 'start':
 			return 'started';
@@ -60,6 +85,6 @@ function translateState(val: PossibleStates, def: string): string {
 		case 'stop':
 			return 'stopped';
 		default:
-			return val || def;
+			return val;
 	}
 }

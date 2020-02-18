@@ -6,7 +6,9 @@ declare const io: any;
 
 export type PossibleStates = 'start' | 'starting' | 'pause' | 'pausing' | 'stop' | 'stopping' | string;
 
+const connecting = new BehaviorSubject<boolean>(false);
 const connected = new BehaviorSubject<boolean>(false);
+const error = new BehaviorSubject<string>('');
 const state0 = new BehaviorSubject<PossibleStates>('');
 const state1 = new BehaviorSubject<PossibleStates>('');
 const still = new BehaviorSubject<string>('');
@@ -27,7 +29,16 @@ function post(url: string, query?: string) {
 	}).then((response) => response.json());
 }
 
-if (username && password) {
+export function connect() {
+	if (!username || !password) {
+		error.next('Please configure a username and password.');
+		connecting.next(false);
+		connected.next(false);
+		return;
+	}
+
+	error.next('');
+	connecting.next(true);
 	post('devices')
 		.then((response: any) => {
 			if (response.result === 'ok'
@@ -36,6 +47,9 @@ if (username && password) {
 				deviceID = response.devices[0].deviceid;
 			} else {
 				console.error(response);
+				error.next(response.message);
+				connecting.next(false);
+				connected.next(false);
 			}
 		})
 		.then(() => {
@@ -58,6 +72,8 @@ if (username && password) {
 						'&sessionid=' + encodeURIComponent(sessionID))
 						.then(resp => {
 							// console.log(resp);
+							error.next('');
+							connecting.next(false);
 							connected.next(true);
 						});
 				});
@@ -73,16 +89,37 @@ if (username && password) {
 					if (json['still'] !== undefined) {
 						still.next(json['still']);
 					}
+					if (json['reason'] === 'override') {
+						socket.disconnect();
+						error.next('Control of device claimed elsewhere.');
+						connecting.next(false);
+						connected.next(false);
+					}
 				});
-				socket.on('disconnect', () => console.error('disconnected'));
+				socket.on('disconnect', () => {
+					error.next('Socket disconnected!');
+					connecting.next(false);
+					connected.next(false);
+				});
 			} else {
 				console.error(server);
+				error.next(server.message);
+				connecting.next(false);
+				connected.next(false);
 			}
 		});
 }
 
 export function useConnected(): boolean {
 	return useBehaviorSubject(connected)[0];
+}
+
+export function useConnecting(): boolean {
+	return useBehaviorSubject(connecting)[0];
+}
+
+export function useError(): string {
+	return useBehaviorSubject(error)[0];
 }
 
 export function useRecordingState(): string {
@@ -130,10 +167,12 @@ export function stopFacebook() {
 function sendCommand(command: string, value: number) {
 	socket.send(JSON.stringify({
 		command,
-		value,
+		device_channel: String(value),
+		value: '',
 		uid: deviceID,
 		_dst: sessionID,
 		_channel: 'send_command',
+		product: 'ub250',
 		protocol: 'tcp',
 		cmd_type: 'basic',
 	}));
