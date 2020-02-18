@@ -11,6 +11,7 @@
   box-shadow: 0 2px 2px $color-dark;
   flex: 0;
   min-width: 200px;
+  min-height: 120px;
   text-align: left;
   overflow: hidden;
 
@@ -36,19 +37,18 @@
     }
 
     .primary {
-      flex: 1;
       font-size: 1.5em;
     }
 
     .secondary {
-      flex: 1;
       font-size: 1.2em;
       font-weight: lighter;
+      margin-bottom: 10px;
     }
 
     .action {
       flex: initial;
-      margin-top: 12px;
+      margin-top: auto;
       font-size: 0.8em;
     }
   }
