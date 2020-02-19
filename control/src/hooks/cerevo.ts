@@ -1,5 +1,4 @@
 import { BehaviorSubject } from 'rxjs';
-import { password, username } from '../credentials';
 import { useBehaviorSubject } from './base';
 
 declare const io: any;
@@ -17,19 +16,7 @@ let deviceID: string;
 let sessionID: string;
 let socket: any;
 
-function post(url: string, query?: string) {
-	return fetch('https://shell.cerevo.com/api/web/socket/' + url, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-		},
-		body: 'mailaddr=' + encodeURIComponent(username)
-			+ '&password=' + encodeURIComponent(password)
-			+ (query ? '&' + query : ''),
-	}).then((response) => response.json());
-}
-
-export function connect() {
+export function connect(username: string, password: string) {
 	if (!username || !password) {
 		error.next('Please configure a username and password.');
 		connecting.next(false);
@@ -39,7 +26,7 @@ export function connect() {
 
 	error.next('');
 	connecting.next(true);
-	post('devices')
+	post({username, password, url: 'devices'})
 		.then((response: any) => {
 			if (response.result === 'ok'
 				&& response.devices
@@ -56,7 +43,7 @@ export function connect() {
 			if (!deviceID) {
 				return;
 			}
-			return post('server', 'deviceid=' + deviceID);
+			return post({username, password, url: 'server', query: 'deviceid=' + deviceID});
 		})
 		.then((server: any) => {
 			if (!server) {
@@ -68,8 +55,12 @@ export function connect() {
 				socket = io.connect('https://' + server.host, server);
 				socket.on('connect', () => {
 					sessionID = socket.socket.sessionid;
-					post('connect', 'deviceid=' + deviceID +
-						'&sessionid=' + encodeURIComponent(sessionID))
+					post({
+						username,
+						password,
+						url: 'connect',
+						query: 'deviceid=' + deviceID + '&sessionid=' + encodeURIComponent(sessionID),
+					})
 						.then(resp => {
 							// console.log(resp);
 							error.next('');
@@ -164,20 +155,6 @@ export function stopFacebook() {
 	state1.next('stopping');
 }
 
-function sendCommand(command: string, value: number) {
-	socket.send(JSON.stringify({
-		command,
-		device_channel: String(value),
-		value: '',
-		uid: deviceID,
-		_dst: sessionID,
-		_channel: 'send_command',
-		product: 'ub250',
-		protocol: 'tcp',
-		cmd_type: 'basic',
-	}));
-}
-
 export enum Image {
 	SayingHi = 'http://s3-ap-northeast-1.amazonaws.com/live-shell/pause/jqdkhKXG5wgh/pause',
 	TakingCommunion = 'http://s3-ap-northeast-1.amazonaws.com/live-shell/pause/4EX3QJDgMIBQ/pause',
@@ -202,4 +179,31 @@ export function setPause(image: Image) {
 		_channel: 'send_command',
 	}));
 	still.next(image);
+}
+
+function post({username, password, url, query}:
+	              { username: string, password: string, url: string, query?: string }) {
+	return fetch('https://shell.cerevo.com/api/web/socket/' + url, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+		},
+		body: 'mailaddr=' + encodeURIComponent(username)
+			+ '&password=' + encodeURIComponent(password)
+			+ (query ? '&' + query : ''),
+	}).then((response) => response.json());
+}
+
+function sendCommand(command: string, value: number) {
+	socket.send(JSON.stringify({
+		command,
+		device_channel: String(value),
+		value: '',
+		uid: deviceID,
+		_dst: sessionID,
+		_channel: 'send_command',
+		product: 'ub250',
+		protocol: 'tcp',
+		cmd_type: 'basic',
+	}));
 }

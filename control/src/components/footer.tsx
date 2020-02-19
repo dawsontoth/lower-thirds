@@ -14,6 +14,7 @@ import {
 	useFacebookState,
 	useRecordingState,
 } from '../hooks/cerevo';
+import { usePassword, useUsername } from '../hooks/credentials';
 import './footer.scss';
 
 export function Footer() {
@@ -22,17 +23,32 @@ export function Footer() {
 	const error = useError();
 	return (
 		<footer>
+			{!connected && !connecting && !error && <ConnectFooter/>}
+			{connecting && <span className="connecting"><i className="fas fa-sync fa-spin"/></span>}
+			{connected && <ConnectedFooter/>}
 			{error && <span className="error">
 				<i className="fal fa-exclamation-triangle"/>
 				{error}
                 <a href="#" onClick={() => window.location.reload()}> Reload</a>
 			</span>}
-			{connecting && <span className="connecting"><i className="fas fa-sync fa-spin"/></span>}
-			{!connected && !connecting && !error && <button type="button" className="connect" onClick={connect}>
-                <i className="fad fa-power-off"/> Connect
-            </button>}
-			{connected && <ConnectedFooter/>}
 		</footer>
+	);
+}
+
+function ConnectFooter() {
+	const [username, setUsername] = useUsername();
+	const [password, setPassword] = usePassword();
+	return (
+		<>
+			<input placeholder="Username" type="email" name="username" value={username} onChange={e => setUsername(e.target.value)}/>
+			<input placeholder="Password" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
+			<button type="button"
+			        className="connect"
+			        onClick={e => connect(username, password)}
+			        disabled={!username || !password}>
+				<i className="fad fa-power-off"/> Connect
+			</button>
+		</>
 	);
 }
 

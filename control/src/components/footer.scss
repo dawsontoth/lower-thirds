@@ -82,16 +82,31 @@ footer {
     }
   }
 
-  span, .connect {
+  span,
+  .connect {
     grid-row: top / span 2;
     grid-column: first / span 8;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
+
     i {
       margin: 0 6px;
     }
+  }
+
+  input {
+    grid-row: top / span 2;
+    grid-column: span 4;
+    padding: 0 12px;
+    font-size: 1.3em;
+  }
+
+  .connect {
+    grid-column: span 2;
+    padding: 0 12px;
+    display: flex;
   }
 
   .error {
