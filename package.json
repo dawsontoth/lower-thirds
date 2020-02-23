@@ -8,6 +8,7 @@
 		"start:display": "cd display && yarn start:display",
 		"start:control": "cd control && yarn start:control",
 		"build": "(cd control && yarn build) && (cd display && yarn build)",
+		"package": "electron-packager ./ --all --out release",
 		"scss": "node-sass ./display/index.scss ./display/index.css --watch"
 	},
 	"keywords": [],
@@ -15,7 +16,8 @@
 	"repository": "https://github.com/dawsontoth/lower-thirds",
 	"license": "CC0-1.0",
 	"devDependencies": {
-		"electron": "^7.1.5"
+		"electron": "^7.1.5",
+		"electron-packager": "^14.2.1"
 	},
 	"dependencies": {
 		"lodash": "^4.17.11",
