@@ -1,15 +1,18 @@
 import React from 'react';
-import { useHeaderHidden } from "../hooks/header-hidden";
+import { useHeaderConfiguring } from '../hooks/header-configuring';
+import { useHeaderHidden } from '../hooks/header-hidden';
 import { Action } from '../models/action';
 import { Shortcut } from '../models/shortcut';
 import { SuggestionMode } from '../models/suggestion-mode';
 import { ActionButton } from './action-button';
+import { HeaderConfig } from './header-config';
 import './header.scss';
 import { LiveEntry } from './live-entry';
 import { SuggestButton } from './suggest-button';
 
 export function Header() {
 	const [hidden, setHidden] = useHeaderHidden();
+	const [configuring, setConfiguring] = useHeaderConfiguring();
 	return (
 		<header className={hidden ? 'is-hidden' : ''}>
 			<SuggestButton mode={SuggestionMode.Verse} label="Verse" icon="fad fa-bible"/>
@@ -23,9 +26,16 @@ export function Header() {
 			<ActionButton action={Action.Hide} icon="fad fa-eye-slash" shortcut={Shortcut.Escape}/>
 			<ActionButton action={Action.Save} icon="fad fa-save" shortcut={Shortcut.CtrlS}/>
 
-			<button className="hide"
+			<HeaderConfig/>
+
+			<button className="hiding"
 			        type="button"
-			        onClick={() => setHidden(!hidden)}><i className={hidden ? 'fad fa-plus' : 'fad fa-minus'}/></button>
+			        onClick={() => setHidden(!hidden)}><i
+				className={hidden ? 'fad fa-plus' : 'fad fa-minus'}/></button>
+			{!hidden && <button className="configuring"
+                                type="button"
+                                onClick={() => setConfiguring(!configuring)}><i
+                className={configuring ? 'fad fa-times-circle' : 'fad fa-cog'}/></button>}
 		</header>
 	);
 }

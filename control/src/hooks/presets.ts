@@ -4,15 +4,11 @@ import { IPrimarySecondary } from '../models/primary-secondary';
 import { persistentStore } from '../utils/store';
 import { useBehaviorSubject } from './base';
 
-const storeKey = StoreKeys.Presets;
-
-const subject = new BehaviorSubject(persistentStore.get<IPrimarySecondary[]>(storeKey, []));
-
-const change = (presets: IPrimarySecondary[]) => {
-	persistentStore.set(storeKey, presets);
-	subject.next(presets);
-};
+const presetsSubject = new BehaviorSubject(persistentStore.get<IPrimarySecondary[]>(StoreKeys.Presets, []));
 
 export function usePresets(): [IPrimarySecondary[], (newLines: IPrimarySecondary[]) => void] {
-	return useBehaviorSubject(subject, change);
+	return useBehaviorSubject(presetsSubject, (presets: IPrimarySecondary[]) => {
+		persistentStore.set(StoreKeys.Presets, presets);
+		presetsSubject.next(presets);
+	});
 }

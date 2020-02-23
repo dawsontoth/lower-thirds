@@ -1,17 +1,39 @@
 import Fuse from 'fuse.js';
+import { BehaviorSubject } from 'rxjs';
+import { StoreKeys } from '../models/keys';
 import { IPrimarySecondary } from '../models/primary-secondary';
 import { SuggestionMode } from '../models/suggestion-mode';
+import { persistentStore } from '../utils/store';
+import { useBehaviorSubject } from './base';
+import { DEFAULT_BOOKS, DEFAULT_NAMES } from './defaults';
 import { useInput } from './input';
 import { useSuggestionMode } from './suggestion-mode';
 
-declare const fs: any;
+const booksSubject = new BehaviorSubject(persistentStore.get<string>(StoreKeys.Books, DEFAULT_BOOKS));
+const namesSubject = new BehaviorSubject(persistentStore.get<string>(StoreKeys.Names, DEFAULT_NAMES));
 
-const names = fuse('data/names.txt');
-const books = fuse('data/books.txt');
+export function useNames(): [string, (newValue: string) => void] {
+	return useBehaviorSubject(namesSubject, (value: string) => {
+		persistentStore.set(StoreKeys.Names, value);
+		namesSubject.next(value);
+	});
+}
+
+export function useBooks(): [string, (newValue: string) => void] {
+	return useBehaviorSubject(booksSubject, (value: string) => {
+		persistentStore.set(StoreKeys.Books, value);
+		booksSubject.next(value);
+	});
+}
 
 export function useSuggestion(): [IPrimarySecondary] {
 	const [currentInput] = useInput();
 	const [suggestionMode] = useSuggestionMode();
+	const [rawNames] = useNames();
+	const names = fuse(rawNames);
+	const [rawBooks] = useBooks();
+	const books = fuse(rawBooks);
+
 	let matches;
 
 	switch (suggestionMode) {
@@ -64,9 +86,9 @@ export function useSuggestion(): [IPrimarySecondary] {
 	return [currentInput];
 }
 
-function fuse(txtDataStore: string) {
+function fuse(storedValue: string) {
 	return new Fuse(
-		fs.readFileSync(txtDataStore, 'UTF-8')
+		String(storedValue)
 			.split('\n')
 			.map((l: string) => l.trim())
 			.filter(Boolean),

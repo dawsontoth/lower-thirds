@@ -1,4 +1,14 @@
-Psalms
+export const DEFAULT_NAMES = `TJ Harris/Lead Pastor
+Trish Gunn/Associate Pastor
+Ann-Marie Taylor/Operations
+Judy Gibbons/Administration
+Peter Ahlin
+Dr. Roger Erdvig/Wilmington Christian School
+Trinity Community Church/trinitychurchde.com
+Dr. Daniel Elliott
+Joseph Mwaba/Pastor`;
+
+export const DEFAULT_BOOKS = `Psalms
 Matthew
 John
 Romans
@@ -63,4 +73,4 @@ James
 2 John
 3 John
 Jude
-Revelation
+Revelation`;
