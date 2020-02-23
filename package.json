@@ -11,7 +11,8 @@
     "scss": "node-sass ./display/index.scss ./display/index.css --watch",
     "clean": "rm -Rf release",
     "build": "(cd control && yarn build) && (cd display && yarn build)",
-    "package": "electron-packager ./ --all --out release --overwrite",
+    "package": "electron-packager ./ --all --out release --overwrite --ignore=\"(control|display)/node_modules\"",
+    "zip": "for i in release/*/; do zip -r \"${i%/}.zip\" \"$i\"; done",
     "semantic-release": "semantic-release"
   },
   "keywords": [],
@@ -19,11 +20,35 @@
   "repository": "https://github.com/dawsontoth/lower-thirds",
   "license": "CC0-1.0",
   "devDependencies": {
+    "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/github": "^7.0.4",
+    "@semantic-release/release-notes-generator": "^9.0.0",
     "electron": "^7.1.5",
     "electron-packager": "^14.2.1",
     "node-sass": "^4.13.1",
     "react": "latest",
     "sass": "^1.17.3",
     "semantic-release": "^17.0.4"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/github",
+        {
+          "assets": [
+            {
+              "path": "dist/asset.min.css",
+              "label": "CSS distribution"
+            },
+            {
+              "path": "dist/asset.min.js",
+              "label": "JS distribution"
+            }
+          ]
+        }
+      ]
+    ]
   }
 }
