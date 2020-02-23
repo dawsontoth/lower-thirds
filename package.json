@@ -1,29 +1,28 @@
 {
-	"name": "lower-thirds",
-	"version": "1.0.0",
-	"description": "Generates lower third titles",
-	"main": "main.js",
-	"scripts": {
-		"start": "npm run start:electron",
-		"start:electron": "set ELECTRON_ENABLE_LOGGING=1 && electron .",
-		"start:display": "cd display && yarn start:display",
-		"start:control": "cd control && yarn start:control",
-		"build": "(cd control && yarn build) && (cd display && yarn build)",
-		"package": "electron-packager ./ --all --out release",
-		"scss": "node-sass ./display/index.scss ./display/index.css --watch"
-	},
-	"keywords": [],
-	"author": "Dawson Toth",
-	"repository": "https://github.com/dawsontoth/lower-thirds",
-	"license": "CC0-1.0",
-	"devDependencies": {
-		"electron": "^7.1.5",
-		"electron-packager": "^14.2.1"
-	},
-	"dependencies": {
-		"lodash": "^4.17.11",
-		"node-sass": "^4.13.0",
-		"react": "latest",
-		"sass": "^1.17.3"
-	}
+  "name": "lower-thirds",
+  "version": "1.0.0",
+  "description": "Generates lower third titles",
+  "main": "main.js",
+  "scripts": {
+    "start": "npm run start:electron",
+    "start:electron": "set ELECTRON_ENABLE_LOGGING=1 && electron .",
+    "start:display": "cd display && yarn start:display",
+    "start:control": "cd control && yarn start:control",
+    "build": "(cd control && yarn build) && (cd display && yarn build)",
+    "package": "electron-packager ./ --all --out release --overwrite",
+    "scss": "node-sass ./display/index.scss ./display/index.css --watch",
+    "semantic-release": "semantic-release"
+  },
+  "keywords": [],
+  "author": "Dawson Toth",
+  "repository": "https://github.com/dawsontoth/lower-thirds",
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^7.1.5",
+    "electron-packager": "^14.2.1",
+    "node-sass": "^4.13.1",
+    "react": "latest",
+    "sass": "^1.17.3",
+    "semantic-release": "^17.0.4"
+  }
 }
