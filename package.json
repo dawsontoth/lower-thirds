@@ -11,7 +11,7 @@
     "scss": "node-sass ./display/index.scss ./display/index.css --watch",
     "clean": "rm -Rf release",
     "build": "(cd control && yarn build) && (cd display && yarn build)",
-    "package": "electron-packager ./ --all --out release --overwrite --ignore=\"(control|display)/node_modules\"",
+    "package": "electron-packager ./ --all --out release --overwrite --ignore=\"(control|display)/node_modules\" --ignore=\".idea\"",
     "zip": "for i in release/*/; do zip -r \"${i%/}.zip\" \"$i\"; done",
     "semantic-release": "semantic-release"
   },
