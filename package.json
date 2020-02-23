@@ -39,12 +39,7 @@
         {
           "assets": [
             {
-              "path": "dist/asset.min.css",
-              "label": "CSS distribution"
-            },
-            {
-              "path": "dist/asset.min.js",
-              "label": "JS distribution"
+              "path": "release/*.zip"
             }
           ]
         }
