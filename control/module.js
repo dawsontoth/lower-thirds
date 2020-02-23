@@ -56,7 +56,7 @@ function createControlWindow() {
     if (testing) {
         controlWindow.loadURL('http://localhost:3000?userData=' + encodeURIComponent(app.getPath('userData')));
     } else {
-        const local = path.resolve('./control/build/index.html');
+        const local = path.resolve(path.join(__dirname, 'build/index.html'));
         controlWindow.loadURL('file://' + local + '?userData=' + encodeURIComponent(app.getPath('userData')));
     }
 
