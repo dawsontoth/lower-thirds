@@ -13,15 +13,20 @@
     "build": "(cd control && yarn build) && (cd display && yarn build)",
     "package": "electron-packager ./ --all --out release --overwrite --ignore=\"(control|display)/node_modules\" --ignore=\".idea\"",
     "zip": "for i in release/*/; do zip -r \"${i%/}.zip\" \"$i\"; done",
-    "semantic-release": "semantic-release --no-ci"
+    "semantic-release": "semantic-release --no-ci",
+    "postversion": "yarn clean && yarn build && yarn package && yarn zip"
   },
   "keywords": [],
+  "private": true,
   "author": "Dawson Toth",
   "repository": "https://github.com/dawsontoth/lower-thirds",
   "license": "CC0-1.0",
   "devDependencies": {
+    "@semantic-release/changelog": "^5.0.0",
     "@semantic-release/commit-analyzer": "^8.0.1",
+    "@semantic-release/git": "^9.0.0",
     "@semantic-release/github": "^7.0.4",
+    "@semantic-release/npm": "^7.0.3",
     "@semantic-release/release-notes-generator": "^9.0.0",
     "electron": "^7.1.5",
     "electron-packager": "^14.2.1",
@@ -34,6 +39,22 @@
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "CHANGELOG.md",
+            "package.json"
+          ]
+        }
+      ],
       [
         "@semantic-release/github",
         {
