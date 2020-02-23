@@ -8,7 +8,6 @@ export function Cards() {
 	const [presets] = usePresets();
 	const connected = useConnected();
 	const pauseImage = usePauseImage();
-	console.log(pauseImage);
 	return (
 		<section>
 			<div className="cards">
@@ -18,25 +17,25 @@ export function Cards() {
                 <div className={'card' + (pauseImage === Image.SayingHi ? ' showing' : '')}
                      onClick={() => setPause(Image.SayingHi)}>
                     <div className="click-to-show narrow">
-                        <img src={Image.SayingHi}/>
+                        <img src={Image.SayingHi} alt="Saying hi"/>
                     </div>
                 </div>
                 <div className={'card' + (pauseImage === Image.TakingCommunion ? ' showing' : '')}
                      onClick={() => setPause(Image.TakingCommunion)}>
                     <div className="click-to-show narrow">
-                        <img src={Image.TakingCommunion}/>
+                        <img src={Image.TakingCommunion} alt="Taking communion"/>
                     </div>
                 </div>
                 <div className={'card' + (pauseImage === Image.WatchingAClip ? ' showing' : '')}
                      onClick={() => setPause(Image.WatchingAClip)}>
                     <div className="click-to-show narrow">
-                        <img src={Image.WatchingAClip}/>
+                        <img src={Image.WatchingAClip} alt="Watching a Clip"/>
                     </div>
                 </div>
                 <div className={'card' + (pauseImage === Image.ThanksForTuningIn ? ' showing' : '')}
                      onClick={() => setPause(Image.ThanksForTuningIn)}>
                     <div className="click-to-show narrow">
-                        <img src={Image.ThanksForTuningIn}/>
+                        <img src={Image.ThanksForTuningIn} alt="Thanks for tuning in!"/>
                     </div>
                 </div>
             </div>}

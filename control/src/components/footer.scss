@@ -50,7 +50,7 @@ footer {
     text-transform: capitalize;
   }
 
-  button {
+  button:not(.inline) {
     grid-row: top / span 2;
     margin: 0 $button-margin;
     font-size: 1.3em;

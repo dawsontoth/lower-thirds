@@ -29,7 +29,7 @@ export function Footer() {
 			{error && <span className="error">
 				<i className="fal fa-exclamation-triangle"/>
 				{error}
-                <a href="#" onClick={() => window.location.reload()}> Reload</a>
+                <button className="inline" onClick={() => window.location.reload()}>Reload</button>
 			</span>}
 		</footer>
 	);
@@ -40,8 +40,10 @@ function ConnectFooter() {
 	const [password, setPassword] = usePassword();
 	return (
 		<>
-			<input placeholder="Username" type="email" name="username" value={username} onChange={e => setUsername(e.target.value)}/>
-			<input placeholder="Password" type="password" name="password" value={password} onChange={e => setPassword(e.target.value)}/>
+			<input placeholder="Username" type="email" name="username" value={username}
+			       onChange={e => setUsername(e.target.value)}/>
+			<input placeholder="Password" type="password" name="password" value={password}
+			       onChange={e => setPassword(e.target.value)}/>
 			<button type="button"
 			        className="connect"
 			        onClick={e => connect(username, password)}

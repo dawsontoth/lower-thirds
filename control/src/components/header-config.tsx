@@ -9,8 +9,8 @@ export function HeaderConfig() {
 	const [books, setBooks] = useBooks();
 	return (
 		<div className={'take-over ' + (!configuring ? 'is-hidden' : '')}>
-			<textarea onChange={e => setNames(e.target.value)}>{names}</textarea>
-			<textarea onChange={e => setBooks(e.target.value)}>{books}</textarea>
+			<textarea value={names} onChange={e => setNames(e.target.value)}/>
+			<textarea value={books} onChange={e => setBooks(e.target.value)}/>
 		</div>
 	);
 }
