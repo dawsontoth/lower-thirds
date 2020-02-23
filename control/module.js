@@ -1,4 +1,5 @@
 const electron = require('electron'),
+    path = require('path'),
     testing = require('../config').testing,
     {BrowserWindow, app, globalShortcut} = electron,
     shallowDefaults = require('../lib/defaults'),
@@ -53,10 +54,12 @@ function createControlWindow() {
     controlWindow.on('resize', saveState);
     controlWindow.on('move', saveState);
     if (testing) {
-        controlWindow.loadURL('http://localhost:3000');
+        controlWindow.loadURL('http://localhost:3000?userData=' + encodeURIComponent(app.getPath('userData')));
     } else {
-        controlWindow.loadFile('control/build/index.html');
+        const local = path.resolve('./control/build/index.html');
+        controlWindow.loadURL('file://' + local + '?userData=' + encodeURIComponent(app.getPath('userData')));
     }
+
     // controlWindow.maximize();
     // controlWindow.setFullScreen(true);
     controlWindow.on('closed', () => electron.app.quit());

@@ -1,14 +1,15 @@
 declare const path: any;
 declare const fs: any;
-
-const dataStore = 'data/store';
+declare const location: any;
+const query = new URLSearchParams(location.search);
+const userData = query.has('userData') ? query.get('userData') : 'data';
 
 class Store {
 	private readonly path: string;
 	private readonly data: any;
 
 	constructor(subPath: string) {
-		this.path = path.join(dataStore, subPath + '.json');
+		this.path = path.join(userData, subPath + '.json');
 		this.data = parseDataFile(this.path, {});
 	}
 
