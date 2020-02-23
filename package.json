@@ -4,13 +4,14 @@
   "description": "Generates lower third titles",
   "main": "main.js",
   "scripts": {
-    "start": "npm run start:electron",
+    "start": "yarn run start:electron",
     "start:electron": "set ELECTRON_ENABLE_LOGGING=1 && electron .",
-    "start:display": "cd display && yarn start:display",
     "start:control": "cd control && yarn start:control",
+    "start:display": "cd display && yarn start:display",
+    "scss": "node-sass ./display/index.scss ./display/index.css --watch",
+    "clean": "rm -Rf release",
     "build": "(cd control && yarn build) && (cd display && yarn build)",
     "package": "electron-packager ./ --all --out release --overwrite",
-    "scss": "node-sass ./display/index.scss ./display/index.css --watch",
     "semantic-release": "semantic-release"
   },
   "keywords": [],
