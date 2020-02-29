@@ -5,113 +5,113 @@ $button-width: 60px;
 $button-margin: 6px;
 
 footer {
-  background-color: $color-dark;
-  display: grid;
-  grid-template-columns: [first] $label-width repeat(3, $button-width + $button-margin * 2) repeat(3, $button-width + $button-margin * 2) [second] $label-width;
-  grid-template-rows: [top] $button-height / 2 [bottom] $button-height / 2;
-  grid-gap: 0;
-  justify-content: center;
+	background-color: $color-dark;
+	display: grid;
+	grid-template-columns: [first] $label-width repeat(3, $button-width + $button-margin * 2) repeat(3, $button-width + $button-margin * 2) [second] $label-width;
+	grid-template-rows: [top] $button-height / 2 [bottom] $button-height / 2;
+	grid-gap: 0;
+	justify-content: center;
 
-  dt.first, dd.first {
-    grid-column: first;
-  }
+	dt.first, dd.first {
+		grid-column: first;
+	}
 
-  dt.second, dd.second {
-    grid-column: second;
-  }
+	dt.second, dd.second {
+		grid-column: second;
+	}
 
-  dt, dd {
-    padding: 0 12px;
-    margin: 0;
-    display: flex;
+	dt, dd {
+		padding: 0 12px;
+		margin: 0;
+		display: flex;
 
-    &.start {
-      background-color: $color-preview;
-    }
+		&.start {
+			background-color: $color-preview;
+		}
 
-    &.pause {
-      background-color: $color-action;
-    }
+		&.pause {
+			background-color: $color-action;
+		}
 
-    &.stop {
-      background-color: $color-program;
-    }
-  }
+		&.stop {
+			background-color: $color-program;
+		}
+	}
 
-  dt {
-    font-size: 1.2em;
-    font-weight: bold;
-    line-height: 40px;
-  }
+	dt {
+		font-size: 1.2em;
+		font-weight: bold;
+		line-height: 40px;
+	}
 
-  dd {
-    grid-row: bottom;
-    color: rgba(255, 255, 255, 0.4);
-    text-transform: capitalize;
-  }
+	dd {
+		grid-row: bottom;
+		color: rgba(255, 255, 255, 0.4);
+		text-transform: capitalize;
+	}
 
-  button:not(.inline) {
-    grid-row: top / span 2;
-    margin: 0 $button-margin;
-    font-size: 1.3em;
-    position: relative;
-    text-align: center;
-    padding-left: 10%;
+	button:not(.inline) {
+		grid-row: top / span 2;
+		margin: 0 $button-margin;
+		font-size: 1.3em;
+		position: relative;
+		text-align: center;
+		padding-left: 10%;
 
-    &[disabled] {
-      opacity: 0.2;
-      cursor: not-allowed;
-    }
+		&[disabled] {
+			opacity: 0.2;
+			cursor: not-allowed;
+		}
 
-    &:not([disabled]):hover {
-      &.start {
-        background-color: $color-preview;
-      }
+		&:not([disabled]):hover {
+			&.start {
+				background-color: $color-preview;
+			}
 
-      &.connect {
-        background-color: $color-preview;
-      }
+			&.connect {
+				background-color: $color-preview;
+			}
 
-      &.pause {
-        background-color: $color-action;
-      }
+			&.pause {
+				background-color: $color-action;
+			}
 
-      &.stop {
-        background-color: $color-program;
-      }
-    }
-  }
+			&.stop {
+				background-color: $color-program;
+			}
+		}
+	}
 
-  span,
-  .connect {
-    grid-row: top / span 2;
-    grid-column: first / span 8;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	span,
+	.connect {
+		grid-row: top / span 2;
+		grid-column: first / span 8;
+		padding: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 
-    i {
-      margin: 0 6px;
-    }
-  }
+		i {
+			margin: 0 6px;
+		}
+	}
 
-  input {
-    grid-row: top / span 2;
-    grid-column: span 4;
-    padding: 0 12px;
-    font-size: 1.3em;
-  }
+	input {
+		grid-row: top / span 2;
+		grid-column: span 4;
+		padding: 0 12px;
+		font-size: 1.3em;
+	}
 
-  .connect {
-    grid-column: span 2;
-    padding: 0 12px;
-    display: flex;
-  }
+	.connect {
+		grid-column: span 2;
+		padding: 0 12px;
+		display: flex;
+	}
 
-  .error {
-    background-color: $color-program;
-    border-radius: 5px 5px 0 0;
-  }
+	.error {
+		background-color: $color-program;
+		border-radius: 5px 5px 0 0;
+	}
 
 }

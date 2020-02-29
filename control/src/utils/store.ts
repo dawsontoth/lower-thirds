@@ -13,9 +13,6 @@ class Store {
 
 	/**
 	 * Retrieves a value from the persistent data store.
-	 * @param key
-	 * @param [defaultValue]
-	 * @returns {*}
 	 */
 	get<T>(key: string, defaultValue?: T) {
 		return this.data[key] === undefined
@@ -25,10 +22,8 @@ class Store {
 
 	/**
 	 * Stores a value in the persistent data store.
-	 * @param key
-	 * @param val
 	 */
-	set<T>(key: string, val: T) {
+	set<T>(key: string, val: T, cb?: (err: Error) => void) {
 		if (this.data[key] === val
 			&& (!val || stringify(val) === stringify(this.data[key]))) {
 			// Already saved!
@@ -36,7 +31,7 @@ class Store {
 		}
 		this.data[key] = val;
 		try {
-			fs.writeFile(this.path, stringify(this.data), 'UTF-8', (err: Error) => null);
+			fs.writeFile(this.path, stringify(this.data), 'UTF-8', cb || ((err: Error) => null));
 		} catch (err) {
 			console.error('Store save failure', err);
 		}

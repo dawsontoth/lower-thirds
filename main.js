@@ -13,9 +13,8 @@ app.on('window-all-closed', cleanUp);
 ipcMain.on('change-lower-third', pumpMessage('change-lower-third'));
 
 function init() {
-	process.env.CONTROL_DISABLED !== 'true' && control.init();
-	process.env.DISPLAY_DISABLED !== 'true' && display.init(true);
-	process.env.DISPLAY_DISABLED !== 'true' && display.init(false);
+	control.init();
+	display.init();
 }
 
 function cleanUp() {
@@ -26,8 +25,7 @@ function cleanUp() {
 
 function pumpMessage(key) {
 	return (evt, args) => {
-		display.windows.forEach(window =>
-			window.webContents.send(key, args),
-		);
+		display.windows.key && display.windows.key.webContents.send(key, args);
+		display.windows.fill && display.windows.fill.webContents.send(key, args);
 	};
 }

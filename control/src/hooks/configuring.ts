@@ -3,7 +3,7 @@ import { useBehaviorSubject } from './base';
 
 const subject = new BehaviorSubject(false);
 
-export function useHeaderHidden(): [boolean, (newHidden: boolean) => void] {
+export function useConfiguring(): [boolean, (newValue: boolean) => void] {
 	return useBehaviorSubject(subject, (mode: boolean) => {
 		subject.next(mode);
 	});

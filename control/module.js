@@ -28,6 +28,9 @@ function activate() {
 }
 
 function createControlWindow() {
+	if ((process.env.CONTROL_DISABLED || '').toLowerCase() === 'true') {
+		return;
+	}
 	let defaults = {
 			autoHideMenuBar: true,
 			x: 200,

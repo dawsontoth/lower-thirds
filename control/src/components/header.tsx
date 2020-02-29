@@ -1,18 +1,17 @@
 import React from 'react';
-import { useHeaderConfiguring } from '../hooks/header-configuring';
+import { useConfiguring } from '../hooks/configuring';
 import { useHeaderHidden } from '../hooks/header-hidden';
 import { Action } from '../models/action';
 import { Shortcut } from '../models/shortcut';
 import { SuggestionMode } from '../models/suggestion-mode';
 import { ActionButton } from './action-button';
-import { HeaderConfig } from './header-config';
 import './header.scss';
 import { LiveEntry } from './live-entry';
 import { SuggestButton } from './suggest-button';
 
 export function Header() {
     const [hidden, setHidden] = useHeaderHidden();
-    const [configuring, setConfiguring] = useHeaderConfiguring();
+    const [configuring, setConfiguring] = useConfiguring();
     return (
         <header className={ hidden ? 'is-hidden' : '' }>
             <SuggestButton mode={ SuggestionMode.Verse } label="Verse" icon="fad fa-bible"/>
@@ -25,8 +24,6 @@ export function Header() {
             <ActionButton action={ Action.Show } icon="fad fa-eye" shortcut={ Shortcut.Enter }/>
             <ActionButton action={ Action.Hide } icon="fad fa-eye-slash" shortcut={ Shortcut.Escape }/>
             <ActionButton action={ Action.Save } icon="fad fa-save" shortcut={ Shortcut.CtrlS }/>
-
-            <HeaderConfig/>
 
             <button className="hiding"
                     type="button"

@@ -1,4 +1,5 @@
 export enum StoreKeys {
+	Displays = 'displays',
 	Presets = 'presets',
 	Username = 'username',
 	Password = 'password',

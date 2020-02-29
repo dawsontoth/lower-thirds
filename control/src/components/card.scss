@@ -1,91 +1,91 @@
 @import '../utils/styles';
 
 .card {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-  user-select: none;
-  background: linear-gradient(135deg, $color-light 0%, $color-neutral 100%);
-  margin: 6px;
-  border-radius: 6px;
-  box-shadow: 0 2px 2px $color-dark;
-  flex: 0;
-  min-width: 200px;
-  min-height: 120px;
-  text-align: left;
-  overflow: hidden;
+	user-select: none;
+	background: linear-gradient(135deg, $color-light 0%, $color-neutral 100%);
+	margin: 6px;
+	border-radius: 6px;
+	box-shadow: 0 2px 2px $color-dark;
+	flex: 0;
+	min-width: 200px;
+	min-height: 120px;
+	text-align: left;
+	overflow: hidden;
 
-  &.showing {
-    .click-to-show, .click-to-show:hover {
-      background: $color-program;
-    }
-  }
+	&.showing {
+		.click-to-show, .click-to-show:hover {
+			background: $color-program;
+		}
+	}
 
-  .click-to-show {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 12px 12px 6px;
-    cursor: pointer;
+	.click-to-show {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		padding: 12px 12px 6px;
+		cursor: pointer;
 
-    &.narrow {
-      padding: 6px;
-    }
+		&.narrow {
+			padding: 6px;
+		}
 
-    &:hover {
-      background-color: $color-preview;
-    }
+		&:hover {
+			background-color: $color-preview;
+		}
 
-    .primary {
-      font-size: 1.5em;
-    }
+		.primary {
+			font-size: 1.5em;
+		}
 
-    .secondary {
-      font-size: 1.2em;
-      font-weight: lighter;
-      margin-bottom: 10px;
-    }
+		.secondary {
+			font-size: 1.2em;
+			font-weight: lighter;
+			margin-bottom: 10px;
+		}
 
-    .action {
-      flex: initial;
-      margin-top: auto;
-      font-size: 0.8em;
-    }
-  }
+		.action {
+			flex: initial;
+			margin-top: auto;
+			font-size: 0.8em;
+		}
+	}
 
-  .key-hint {
-    margin-left: 10px;
-  }
+	.key-hint {
+		margin-left: 10px;
+	}
 
-  .footer {
-    flex: initial;
-    text-align: right;
-  }
+	.footer {
+		flex: initial;
+		text-align: right;
+	}
 
-  button {
-    text-align: left;
+	button {
+		text-align: left;
 
-    &.suggest {
-      padding-left: 30%;
-    }
+		&.suggest {
+			padding-left: 30%;
+		}
 
-    &.active {
-      background-color: $color-positive;
-    }
-  }
+		&.active {
+			background-color: $color-positive;
+		}
+	}
 
-  button {
-    position: relative;
-    padding: 6px 30px 6px 12px;
+	button {
+		position: relative;
+		padding: 6px 30px 6px 12px;
 
-    i {
-      margin-left: 6px;
-    }
+		i {
+			margin-left: 6px;
+		}
 
-    &:hover {
-      &.action-delete {
-        background-color: $color-program;
-      }
-    }
-  }
+		&:hover {
+			&.action-delete {
+				background-color: $color-program;
+			}
+		}
+	}
 }

@@ -1,109 +1,109 @@
 @import '../utils/styles';
 
 header {
-  position: relative;
-  display: grid;
-  grid-template-columns: [left] $button-width [center] $center-width [right] $button-width;
-  grid-template-rows: [top] $button-height [center] $button-height [bottom] $button-height;
-  grid-gap: 0;
-  z-index: 1;
+	position: relative;
+	display: grid;
+	grid-template-columns: [left] $button-width [center] $center-width [right] $button-width;
+	grid-template-rows: [top] $button-height [center] $button-height [bottom] $button-height;
+	grid-gap: 0;
+	z-index: 1;
 
-  &.is-hidden {
-    position: absolute;
-    bottom: 100%;
-  }
+	&.is-hidden {
+		position: absolute;
+		bottom: 100%;
+	}
 
-  button {
-    font-size: 1.3em;
-    position: relative;
-    text-align: left;
-    padding-left: 10%;
+	button {
+		font-size: 1.3em;
+		position: relative;
+		text-align: left;
+		padding-left: 10%;
 
-    &.suggest {
-      padding-left: 30%;
-    }
+		&.suggest {
+			padding-left: 30%;
+		}
 
-    &.active {
-      background-color: $color-positive;
-    }
-  }
+		&.active {
+			background-color: $color-positive;
+		}
+	}
 
-  input,
-  button {
-    background-color: $color-neutral;
+	input,
+	button {
+		background-color: $color-neutral;
 
-    &:hover {
-      background-color: $color-light;
-    }
-  }
+		&:hover {
+			background-color: $color-light;
+		}
+	}
 
-  input:focus {
-    background-color: $color-positive;
-  }
+	input:focus {
+		background-color: $color-positive;
+	}
 
-  .suggest {
-    grid-column: left;
+	.suggest {
+		grid-column: left;
 
-    &-verse {
-      grid-row: top;
-    }
+		&-verse {
+			grid-row: top;
+		}
 
-    &-person {
-      grid-row: center;
-    }
+		&-person {
+			grid-row: center;
+		}
 
-    &-custom {
-      grid-row: bottom;
-    }
-  }
+		&-custom {
+			grid-row: bottom;
+		}
+	}
 
-  .live-entry {
-    grid-column: center;
+	.live-entry {
+		grid-column: center;
 
-    &.primary-line {
-      grid-row: top / span 2;
-    }
+		&.primary-line {
+			grid-row: top / span 2;
+		}
 
-    &.secondary-line {
-      grid-row: bottom;
-    }
-  }
+		&.secondary-line {
+			grid-row: bottom;
+		}
+	}
 
-  .action {
-    grid-column: right;
+	.action {
+		grid-column: right;
 
-    &-show {
-      grid-row: top;
-    }
+		&-show {
+			grid-row: top;
+		}
 
-    &-hide {
-      grid-row: center;
-    }
+		&-hide {
+			grid-row: center;
+		}
 
-    &-save {
-      grid-row: bottom;
-    }
-  }
+		&-save {
+			grid-row: bottom;
+		}
+	}
 
-  .hiding,
-  .configuring {
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    top: 100%;
-    box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.8);
-  }
+	.hiding,
+	.configuring {
+		width: 50px;
+		height: 50px;
+		text-align: center;
+		margin: 0;
+		padding: 0;
+		position: absolute;
+		top: 100%;
+		box-shadow: 1px 2px 1px rgba(0, 0, 0, 0.8);
+	}
 
-  .hiding {
-    left: 0;
-    border-radius: 0 0 50% 0;
-  }
+	.hiding {
+		left: 0;
+		border-radius: 0 0 50% 0;
+	}
 
-  .configuring {
-    right: 0;
-    border-radius: 0 0 0 50%;
-  }
+	.configuring {
+		right: 0;
+		border-radius: 0 0 0 50%;
+	}
 }

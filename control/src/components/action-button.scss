@@ -1,28 +1,28 @@
 @import '../utils/styles';
 
 header {
-  .action {
-    &-show,
-    &-start-recording,
-    &-start-stream {
-      &:hover, &.active {
-        background-color: $color-preview;
-      }
-    }
+	.action {
+		&-show,
+		&-start-recording,
+		&-start-stream {
+			&:hover, &.active {
+				background-color: $color-preview;
+			}
+		}
 
-    &-hide,
-    &-stop-recording,
-    &-pause,
-    &-stop-stream {
-      &:hover, &.active {
-        background-color: $color-program;
-      }
-    }
+		&-hide,
+		&-stop-recording,
+		&-pause,
+		&-stop-stream {
+			&:hover, &.active {
+				background-color: $color-program;
+			}
+		}
 
-    &.disabled {
-      pointer-events: none;
-      color: $color-light;
-    }
-  }
+		&.disabled {
+			pointer-events: none;
+			color: $color-light;
+		}
+	}
 
 }
