@@ -42,7 +42,7 @@ export function useSuggestion(): [IPrimarySecondary] {
 			if (matches.length) {
 				const firstResult = matches[0];
 				const parts = firstResult.matches[0].value.split('/');
-				const result = {...currentInput};
+				const result = { ...currentInput };
 				result.primary = parts[0];
 				if (parts[1]) {
 					result.secondary = parts[1];
@@ -76,7 +76,7 @@ export function useSuggestion(): [IPrimarySecondary] {
 				const value = match.value;
 				const suffix = (value && reference ? ' ' : '')
 					+ (reference ? reference.slice(1).join(':') : '');
-				const result = {...currentInput};
+				const result = { ...currentInput };
 				result.primary = value + suffix;
 				return [result];
 			}

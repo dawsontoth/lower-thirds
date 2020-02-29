@@ -2,7 +2,7 @@ process.on('uncaughtException', err => {
 	console.error(err);
 });
 
-const { app, ipcMain } = require('electron'),
+const {app, ipcMain} = require('electron'),
 	control = require('./control/module'),
 	display = require('./display/module');
 

@@ -26,7 +26,7 @@ export function connect(username: string, password: string) {
 
 	error.next('');
 	connecting.next(true);
-	post({username, password, url: 'devices'})
+	post({ username, password, url: 'devices' })
 		.then((response: any) => {
 			if (response.result === 'ok'
 				&& response.devices
@@ -43,7 +43,7 @@ export function connect(username: string, password: string) {
 			if (!deviceID) {
 				return;
 			}
-			return post({username, password, url: 'server', query: 'deviceid=' + deviceID});
+			return post({ username, password, url: 'server', query: 'deviceid=' + deviceID });
 		})
 		.then((server: any) => {
 			if (!server) {
@@ -181,8 +181,8 @@ export function setPause(image: Image) {
 	still.next(image);
 }
 
-function post({username, password, url, query}:
-	              { username: string, password: string, url: string, query?: string }) {
+function post({ username, password, url, query }:
+				  { username: string, password: string, url: string, query?: string }) {
 	return fetch('https://shell.cerevo.com/api/web/socket/' + url, {
 		method: 'POST',
 		headers: {

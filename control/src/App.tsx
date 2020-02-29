@@ -4,11 +4,11 @@ import { Footer } from './components/footer';
 import { Header } from './components/header';
 
 export function App() {
-	return (
-		<div className="App">
-			<Header/>
-			<Cards/>
-			<Footer/>
-		</div>
-	);
+    return (
+        <div className="App">
+            <Header/>
+            <Cards/>
+            <Footer/>
+        </div>
+    );
 }

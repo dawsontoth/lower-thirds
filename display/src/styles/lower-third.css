@@ -1,33 +1,46 @@
 .lower-third {
-  position: absolute;
-  bottom: 8%;
-  left: 10%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  flex-direction: column;
-  padding-left: 3.3em; }
-  .lower-third > * {
-    text-shadow: 0 3px 6px #000; }
-  .lower-third .slash {
+    position: absolute;
+    bottom: 8%;
+    left: 10%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-left: 3.3em;
+}
+
+.lower-third > * {
+    text-shadow: 0 3px 6px #000;
+}
+
+.lower-third .slash {
     position: absolute;
     color: #cf4c4e;
     left: 0;
     bottom: -0.2em;
-    font-size: 11em; }
-  .lower-third .primary {
+    font-size: 11em;
+}
+
+.lower-third .primary {
     font-size: 5.7em;
-    font-weight: 300; }
-  .lower-third .secondary {
+    font-weight: 300;
+}
+
+.lower-third .secondary {
     font-size: 2em;
-    font-weight: 300; }
-  .lower-third.has-secondary .primary {
+    font-weight: 300;
+}
+
+.lower-third.has-secondary .primary {
     padding-left: 0.2em;
     font-size: 4em;
-    left: 3em; }
+    left: 3em;
+}
 
 .for-alpha-channel .lower-third .slash {
-  color: #fff; }
+    color: #fff;
+}
 
 .for-alpha-channel .lower-third > * {
-  text-shadow: 0 3px 6px white; }
+    text-shadow: 0 3px 6px white;
+}
