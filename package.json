@@ -4,17 +4,17 @@
   "description": "Generates lower third titles",
   "main": "main.js",
   "scripts": {
-    "start": "yarn run start:electron",
+    "start": "npm run start:electron",
     "start:electron": "set ELECTRON_ENABLE_LOGGING=1 && electron .",
-    "start:control": "cd control && yarn start:control",
-    "start:display": "cd display && yarn start:display",
-    "scss": "node-sass ./display/index.scss ./display/index.css --watch",
+    "start:control": "cd control && npm run start:control",
+    "start:display": "cd display && npm run start:display",
     "clean": "rm -Rf release",
-    "build": "(cd control && yarn build) && (cd display && yarn build)",
+    "build": "(cd control && npm run build) && (cd display && npm run build)",
     "package": "electron-packager ./ --all --out release --overwrite --ignore=\"(control|display)/node_modules\" --ignore=\".idea\"",
     "zip": "for i in release/*/; do zip -r \"${i%/}.zip\" \"$i\"; done",
     "semantic-release": "semantic-release --no-ci",
-    "postversion": "yarn clean && yarn build && yarn package && yarn zip"
+    "postversion": "npm run clean && npm run build && npm run package && npm run zip",
+    "postinstall": "(cd control && npm install) && (cd display && npm install)"
   },
   "keywords": [],
   "private": true,
@@ -28,11 +28,9 @@
     "@semantic-release/github": "^7.0.4",
     "@semantic-release/npm": "^7.0.3",
     "@semantic-release/release-notes-generator": "^9.0.0",
-    "electron": "^7.1.5",
+    "electron": "^8.0.2",
     "electron-packager": "^14.2.1",
-    "node-sass": "^4.13.1",
     "react": "latest",
-    "sass": "^1.17.3",
     "semantic-release": "^17.0.4"
   },
   "release": {

@@ -1,8 +1,6 @@
 declare const path: any;
 declare const fs: any;
-declare const location: any;
-const query = new URLSearchParams(location.search);
-const userData = query.has('userData') ? query.get('userData') : 'data';
+declare const userData: any;
 
 class Store {
 	private readonly path: string;

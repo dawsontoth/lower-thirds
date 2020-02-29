@@ -12,7 +12,10 @@
     <script>
       const fs = require('fs');
       const path = require('path');
-      const ipc = require('electron').ipcRenderer;
+      const electron = require('electron');
+      const ipc = electron.ipcRenderer;
+      const userData = electron.remote.app.getPath('userData');
+      console.log(userData);
     </script>
     <script src="https://kit.fontawesome.com/dc961c3910.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js"></script>
