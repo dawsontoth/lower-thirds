@@ -1,5 +1,4 @@
 const electron = require('electron'),
-	testing = require('../config').testing,
 	shallowDefaults = require('../lib/defaults'),
 	{BrowserWindow} = electron;
 
@@ -25,9 +24,6 @@ function createDisplayWindow(alphaChannel) {
 				width: 192 * 2,
 				height: 108 * 2,
 			};
-	if (!testing && alphaChannel && (!secondaryDisplay || !tertiaryDisplay)) {
-		return;
-	}
 	let displayWindow = new BrowserWindow(shallowDefaults(position, {
 		frame: false,
 		alwaysOnTop: true,
@@ -39,8 +35,8 @@ function createDisplayWindow(alphaChannel) {
 			nodeIntegration: true,
 		},
 	}));
-	if (testing) {
-		displayWindow.loadURL('http://localhost:3001');
+	if (process.env.DISPLAY_HOST) {
+		displayWindow.loadURL(process.env.DISPLAY_HOST);
 	} else {
 		displayWindow.loadFile('display/build/index.html');
 	}

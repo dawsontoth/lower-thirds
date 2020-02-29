@@ -5,7 +5,7 @@
 	"main": "main.js",
 	"scripts": {
 		"start": "npm run start:electron",
-		"start:electron": "set ELECTRON_ENABLE_LOGGING=1 && electron .",
+		"start:electron": "electron .",
 		"start:control": "cd control && npm run start:control",
 		"start:display": "cd display && npm run start:display",
 		"clean": "rm -Rf release",
@@ -27,10 +27,10 @@
 		"@semantic-release/git": "^9.0.0",
 		"@semantic-release/github": "^7.0.4",
 		"@semantic-release/npm": "^7.0.3",
-		"@semantic-release/release-notes-generator": "^9.0.0",
+		"@semantic-release/release-notes-generator": "^9.0.1",
+		"dotenv": "^8.2.0",
 		"electron": "^8.0.2",
 		"electron-packager": "^14.2.1",
-		"react": "latest",
 		"semantic-release": "^17.0.4"
 	},
 	"release": {

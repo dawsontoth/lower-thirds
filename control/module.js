@@ -1,5 +1,4 @@
 const electron = require('electron'),
-	testing = require('../config').testing,
 	{BrowserWindow, app, globalShortcut} = electron,
 	shallowDefaults = require('../lib/defaults'),
 	store = new (require('../lib/store'))('control');
@@ -52,8 +51,8 @@ function createControlWindow() {
 	controlWindow = exports.window = new BrowserWindow(shallowDefaults(position, defaults));
 	controlWindow.on('resize', saveState);
 	controlWindow.on('move', saveState);
-	if (testing) {
-		controlWindow.loadURL('http://localhost:3000');
+	if (process.env.CONTROL_HOST) {
+		controlWindow.loadURL(process.env.CONTROL_HOST);
 	} else {
 		controlWindow.loadFile('control/build/index.html');
 	}
