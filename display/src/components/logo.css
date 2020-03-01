@@ -1,0 +1,28 @@
+.logo {
+  transition: opacity 1s, transform 1s ease-in-out;
+  transform: translateX(-200%) rotate(-360deg);
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: black;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  font-family: 'Avenir-Black', sans-serif;
+  font-size: 2.4em;
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  .for-alpha-channel .logo {
+    opacity: 0; }
+  .logo.in {
+    transform: translateX(0) rotate(0); }
+    .for-alpha-channel .logo.in {
+      opacity: 1; }
+  .logo.out {
+    transform: translateX(-200%) rotate(-360deg); }
+    .for-alpha-channel .logo.out {
+      opacity: 0; }
+  .for-alpha-channel .logo {
+    background-color: white;
+    box-shadow: 0 3px 6px rgba(255, 255, 255, 0.7); }

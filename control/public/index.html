@@ -1,11 +1,11 @@
 <!DOCTYPE html>
+<!--suppress JSUnusedGlobalSymbols -->
 <html lang="en">
     <head>
         <meta charset="utf-8"/>
         <link href="%PUBLIC_URL%/favicon.ico" rel="icon"/>
         <meta content="width=device-width, initial-scale=1" name="viewport"/>
-        <meta http-equiv="Content-Security-Policy"
-              content="script-src 'self' 'unsafe-inline' kit.fontawesome.com cdnjs.cloudflare.com">
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';">
         <meta content="#000000" name="theme-color"/>
         <meta content="Control" name="description"/>
         <script>
@@ -15,9 +15,8 @@
           const ipc = electron.ipcRenderer;
           const userData = electron.remote.app.getPath('userData');
         </script>
-        <script crossorigin="anonymous" src="https://kit.fontawesome.com/dc961c3910.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.10/socket.io.min.js"
-                type="text/javascript"></script>
+        <script src="./socket.io/socket.io.min.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="./fontawesome/css/all.css" />
         <link href="%PUBLIC_URL%/logo192.png" rel="apple-touch-icon"/>
         <link href="%PUBLIC_URL%/manifest.json" rel="manifest"/>
         <title>Lower Thirds</title>
