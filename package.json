@@ -10,7 +10,7 @@
 		"start:display": "cd display && npm run start:display",
 		"clean": "rm -Rf release",
 		"build": "(cd control && npm run build) && (cd display && npm run build)",
-		"package": "electron-packager ./ --all --out release --overwrite --ignore=\"(control|display)/node_modules\" --ignore=\".idea\"",
+		"package": "electron-packager ./ --all --out release --overwrite --ignore=\"(control|display)/(node_modules|public|src|tsconfig.json|README.md|package.json|package-lock.json)\" --ignore=\".idea\"",
 		"zip": "for i in release/*/; do zip -r \"${i%/}.zip\" \"$i\"; done",
 		"postversion": "npm run clean && npm run build && npm run package && npm run zip",
 		"postinstall": "(cd control && npm install) && (cd display && npm install)",
@@ -49,7 +49,8 @@
 				{
 					"assets": [
 						"CHANGELOG.md",
-						"package.json"
+						"package.json",
+						"package-lock.json"
 					]
 				}
 			],
