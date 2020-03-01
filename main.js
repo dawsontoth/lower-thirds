@@ -1,9 +1,15 @@
 process.on('uncaughtException', err => {
 	console.error(err);
 });
-require('dotenv').config();
 
-const {app, ipcMain} = require('electron'),
+try {
+	require('dotenv').config();
+}
+catch (err) {
+	// Not required.
+}
+
+const { app, ipcMain } = require('electron'),
 	control = require('./control/module'),
 	display = require('./display/module');
 
