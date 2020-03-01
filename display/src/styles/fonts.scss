@@ -1,4 +1,12 @@
 @font-face {
+	font-family: 'Avenir-Black';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: local('Avenir-Black'), url(../fonts/Avenir/Avenir-Black.ttf) format('ttf');
+}
+
+@font-face {
 	font-family: 'Arimo';
 	font-style: normal;
 	font-weight: 400;

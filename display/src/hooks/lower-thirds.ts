@@ -9,12 +9,12 @@ const subject = new BehaviorSubject<ILowerThird[]>([]);
 
 ipc.on('change-lower-third', (evt: any, lowerThird: ILowerThird) => {
 	const lowerThirds = subject.value
-		.filter(lt => !lt.out)
-		.map(lt => ({ ...lt, out: true }));
+		.filter(lt => lt.out < (Date.now() - 20000))
+		.map(lt => ({ ...lt, out: Date.now() }));
 	const newLowerThird: ILowerThird = {
 		...lowerThird,
 		id: String(nextID++),
-		out: false,
+		out: 0,
 	};
 	if (newLowerThird.primary) {
 		lowerThirds.push(newLowerThird);

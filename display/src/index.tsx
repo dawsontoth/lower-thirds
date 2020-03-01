@@ -4,6 +4,5 @@ import App from './App';
 
 import './styles/fonts.scss';
 import './styles/index.scss';
-import './styles/lower-third.scss';
 
 ReactDOM.render(<App/>, document.getElementById('root'));

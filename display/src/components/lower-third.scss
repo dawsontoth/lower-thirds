@@ -1,0 +1,62 @@
+.lower-third {
+	transition: clip-path 1s ease-in-out, opacity 1s;
+
+	@mixin in() {
+		clip-path: circle(140% at 6% 50%);
+
+		.for-alpha-channel & {
+			opacity: 1;
+		}
+	}
+
+	@mixin out() {
+		clip-path: circle(8% at 6% 50%);
+
+		.for-alpha-channel & {
+			opacity: 0;
+		}
+	}
+
+	@include out();
+
+	&.in {
+		@include in();
+	}
+
+	&.out {
+		@include out();
+	}
+
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	padding-left: 120px;
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	flex-direction: column;
+
+	.for-alpha-channel & {
+		> * {
+			text-shadow: 0 3px 6px rgba(255, 255, 255, 0.7);
+		}
+	}
+
+
+	.primary {
+		font-size: 5.7em;
+		font-weight: 300;
+	}
+
+	.secondary {
+		font-size: 2em;
+		font-weight: 300;
+		padding-left: 0.42em;
+	}
+
+	&.has-secondary {
+		.primary {
+			font-size: 4em;
+		}
+	}
+}
