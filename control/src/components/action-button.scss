@@ -20,8 +20,8 @@ header {
 		}
 
 		&.disabled {
-			pointer-events: none;
 			color: $color-light;
+			pointer-events: none;
 		}
 	}
 

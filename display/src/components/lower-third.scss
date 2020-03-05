@@ -1,5 +1,5 @@
 .lower-third {
-	transition: clip-path 1s ease-in-out, opacity 1s;
+	align-items: flex-start;
 
 	@mixin in() {
 		clip-path: circle(140% at 6% 50%);
@@ -19,6 +19,17 @@
 
 	@include out();
 
+	bottom: 0;
+
+	display: flex;
+
+	flex-direction: column;
+	justify-content: space-between;
+	left: 0;
+	padding-left: 120px;
+	position: absolute;
+	transition: clip-path 1s ease-in-out, opacity 1s;
+
 	&.in {
 		@include in();
 	}
@@ -26,15 +37,6 @@
 	&.out {
 		@include out();
 	}
-
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	padding-left: 120px;
-	display: flex;
-	align-items: flex-start;
-	justify-content: space-between;
-	flex-direction: column;
 
 	.for-alpha-channel & {
 		> * {

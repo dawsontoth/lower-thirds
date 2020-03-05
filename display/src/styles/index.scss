@@ -1,23 +1,23 @@
 html, body {
-	width: 100%;
+	cursor: none;
 	height: 100%;
 	margin: 0;
-	padding: 0;
 	overflow: hidden;
-	cursor: none;
+	padding: 0;
+	width: 100%;
 }
 
 body {
-	color: white;
 	background-color: black;
+	color: white;
 	//background-image: url('../images/sample.png');
 	font-family: 'Open Sans', sans-serif;
 	line-height: 1;
 }
 
 .App {
-	position: absolute;
 	bottom: 8%;
 	left: 10%;
+	position: absolute;
 	right: 10%;
 }

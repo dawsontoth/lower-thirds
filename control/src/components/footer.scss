@@ -7,9 +7,9 @@ $button-margin: 6px;
 footer {
 	background-color: $color-dark;
 	display: grid;
+	grid-gap: 0;
 	grid-template-columns: [first] $label-width repeat(3, $button-width + $button-margin * 2) repeat(3, $button-width + $button-margin * 2) [second] $label-width;
 	grid-template-rows: [top] $button-height / 2 [bottom] $button-height / 2;
-	grid-gap: 0;
 	justify-content: center;
 
 	dt.first, dd.first {
@@ -21,9 +21,9 @@ footer {
 	}
 
 	dt, dd {
-		padding: 0 12px;
-		margin: 0;
 		display: flex;
+		margin: 0;
+		padding: 0 12px;
 
 		&.start {
 			background-color: $color-preview;
@@ -45,22 +45,22 @@ footer {
 	}
 
 	dd {
-		grid-row: bottom;
 		color: rgba(255, 255, 255, 0.4);
+		grid-row: bottom;
 		text-transform: capitalize;
 	}
 
 	button:not(.inline) {
+		font-size: 1.3em;
 		grid-row: top / span 2;
 		margin: 0 $button-margin;
-		font-size: 1.3em;
+		padding-left: 10%;
 		position: relative;
 		text-align: center;
-		padding-left: 10%;
 
 		&[disabled] {
-			opacity: 0.2;
 			cursor: not-allowed;
+			opacity: 0.2;
 		}
 
 		&:not([disabled]):hover {
@@ -84,12 +84,12 @@ footer {
 
 	span,
 	.connect {
-		grid-row: top / span 2;
-		grid-column: first / span 8;
-		padding: 0;
-		display: flex;
 		align-items: center;
+		display: flex;
+		grid-column: first / span 8;
+		grid-row: top / span 2;
 		justify-content: center;
+		padding: 0;
 
 		i {
 			margin: 0 6px;
@@ -97,16 +97,16 @@ footer {
 	}
 
 	input {
-		grid-row: top / span 2;
-		grid-column: span 4;
-		padding: 0 12px;
 		font-size: 1.3em;
+		grid-column: span 4;
+		grid-row: top / span 2;
+		padding: 0 12px;
 	}
 
 	.connect {
+		display: flex;
 		grid-column: span 2;
 		padding: 0 12px;
-		display: flex;
 	}
 
 	.error {

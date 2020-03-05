@@ -32,7 +32,8 @@ export function connect(username: string, password: string) {
 				&& response.devices
 				&& response.devices[0]) {
 				deviceID = response.devices[0].deviceid;
-			} else {
+			}
+			else {
 				console.error(response);
 				error.next(response.message);
 				connecting.next(false);
@@ -92,7 +93,8 @@ export function connect(username: string, password: string) {
 					connecting.next(false);
 					connected.next(false);
 				});
-			} else {
+			}
+			else {
 				console.error(server);
 				error.next(server.message);
 				connecting.next(false);

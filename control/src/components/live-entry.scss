@@ -14,18 +14,18 @@
 	input {
 		box-sizing: border-box;
 		display: block;
-		width: 100%;
-		height: 100%;
 		font-size: 1em;
+		height: 100%;
 		text-indent: $indent;
+		width: 100%;
 	}
 
 	.suggestion {
-		pointer-events: none;
-		position: absolute;
 		bottom: 4%;
-		left: $indent;
 		font-size: 0.7em;
 		font-weight: lighter;
+		left: $indent;
+		pointer-events: none;
+		position: absolute;
 	}
 }

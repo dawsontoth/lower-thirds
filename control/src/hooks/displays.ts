@@ -1,5 +1,5 @@
 import { BehaviorSubject } from 'rxjs';
-import { IConfiguredDisplay } from "../models/configured-display";
+import { IConfiguredDisplay } from '../models/configured-display';
 import { StoreKeys } from '../models/keys';
 import { persistentStore } from '../utils/store';
 import { useBehaviorSubject } from './base';

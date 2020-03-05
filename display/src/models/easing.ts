@@ -99,7 +99,9 @@ export const easing: IEasingMap = {
 	// Exponential accelerating until halfway, then decelerating
 	inOutExpo: (t) => {
 		t /= .5;
-		if (t < 1) return Math.pow(2, 10 * (t - 1)) / 2;
+		if (t < 1) {
+			return Math.pow(2, 10 * (t - 1)) / 2;
+		}
 		t--;
 		return (-Math.pow(2, -10 * t) + 2) / 2;
 	},
@@ -116,7 +118,9 @@ export const easing: IEasingMap = {
 	// Circular acceleration until halfway, then deceleration
 	inOutCirc: (t) => {
 		t /= .5;
-		if (t < 1) return -(Math.sqrt(1 - t * t) - 1) / 2;
+		if (t < 1) {
+			return -(Math.sqrt(1 - t * t) - 1) / 2;
+		}
 		t -= 2;
 		return (Math.sqrt(1 - t * t) + 1) / 2;
 	},

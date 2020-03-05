@@ -1,19 +1,22 @@
 html, body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  cursor: none; }
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	cursor: none;
+}
 
 body {
-  color: white;
-  background-color: black;
-  font-family: 'Open Sans', sans-serif;
-  line-height: 1; }
+	color: white;
+	background-color: black;
+	font-family: 'Open Sans', sans-serif;
+	line-height: 1;
+}
 
 .App {
-  position: absolute;
-  bottom: 8%;
-  left: 10%;
-  right: 10%; }
+	position: absolute;
+	bottom: 8%;
+	left: 10%;
+	right: 10%;
+}

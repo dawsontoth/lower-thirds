@@ -1,19 +1,19 @@
 @import '../utils/styles';
 
 .card {
-	display: flex;
-	flex-direction: column;
-
-	user-select: none;
 	background: linear-gradient(135deg, $color-light 0%, $color-neutral 100%);
-	margin: 6px;
 	border-radius: 6px;
+
 	box-shadow: 0 2px 2px $color-dark;
+	display: flex;
 	flex: 0;
-	min-width: 200px;
+	flex-direction: column;
+	margin: 6px;
 	min-height: 120px;
-	text-align: left;
+	min-width: 200px;
 	overflow: hidden;
+	text-align: left;
+	user-select: none;
 
 	&.showing {
 		.click-to-show, .click-to-show:hover {
@@ -22,11 +22,11 @@
 	}
 
 	.click-to-show {
-		flex: 1;
+		cursor: pointer;
 		display: flex;
+		flex: 1;
 		flex-direction: column;
 		padding: 12px 12px 6px;
-		cursor: pointer;
 
 		&.narrow {
 			padding: 6px;
@@ -48,8 +48,8 @@
 
 		.action {
 			flex: initial;
-			margin-top: auto;
 			font-size: 0.8em;
+			margin-top: auto;
 		}
 	}
 
@@ -75,8 +75,8 @@
 	}
 
 	button {
-		position: relative;
 		padding: 6px 30px 6px 12px;
+		position: relative;
 
 		i {
 			margin-left: 6px;

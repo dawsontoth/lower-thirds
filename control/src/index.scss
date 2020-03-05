@@ -1,21 +1,21 @@
 @import 'utils/styles';
 
 body {
-	margin: 0;
+	background-color: $color-background;
+	color: white;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
 	'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
 	sans-serif;
 	-webkit-font-smoothing: antialiased;
+	margin: 0;
 	-moz-osx-font-smoothing: grayscale;
-	color: white;
-	background-color: $color-background;
 }
 
 html, body, #root, .App {
+	height: 100%;
 	margin: 0;
 	padding: 0;
 	width: 100%;
-	height: 100%;
 }
 
 .App {
@@ -44,10 +44,10 @@ button {
 
 input,
 button {
+	background-color: transparent;
 	border: none;
 	color: white;
 	outline: none;
-	background-color: transparent;
 }
 
 button:focus {
@@ -57,10 +57,10 @@ button:focus {
 .icon-status,
 .icon-depict {
 	position: absolute;
+	text-align: center;
 	top: 50%;
 	transform: translate(0, -50%);
 	width: 20px;
-	text-align: center;
 }
 
 .icon-status {

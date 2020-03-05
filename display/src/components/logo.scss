@@ -1,5 +1,5 @@
 .logo {
-	transition: opacity 1s, transform 1s ease-in-out;
+	align-items: center;
 
 	@mixin in() {
 		transform: translateX(0) rotate(0);
@@ -19,6 +19,22 @@
 
 	@include out();
 
+	background-color: black;
+
+	border-radius: 100%;
+
+	bottom: 0;
+
+	display: flex;
+	font-family: 'Avenir-Black', sans-serif;
+	font-size: 2.4em;
+	height: 100px;
+	justify-content: center;
+	left: 0;
+	position: absolute;
+	transition: opacity 1s, transform 1s ease-in-out;
+	width: 100px;
+
 	&.in {
 		@include in();
 	}
@@ -31,17 +47,4 @@
 		background-color: white;
 		box-shadow: 0 3px 6px rgba(255, 255, 255, 0.7);
 	}
-
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	background-color: black;
-	width: 100px;
-	height: 100px;
-	border-radius: 100%;
-	font-family: 'Avenir-Black', sans-serif;
-	font-size: 2.4em;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 }
