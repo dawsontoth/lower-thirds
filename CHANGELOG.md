@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/dawsontoth/lower-thirds/compare/v1.1.0...v1.2.0) (2020-03-05)
+
+
+### Bug Fixes
+
+* Add border to logo ([ff9189f](https://github.com/dawsontoth/lower-thirds/commit/ff9189fef20182d5cf1cd37c19baf659016b2a7f))
+* Exclude source from packages ([53eab49](https://github.com/dawsontoth/lower-thirds/commit/53eab49879827376000af25b1b04adf98960da44))
+
+
+### Features
+
+* Update pauses ([b211b3f](https://github.com/dawsontoth/lower-thirds/commit/b211b3ff52e1f603a2922262c2de4afd38ee2e49))
+
 # [1.1.0](https://github.com/dawsontoth/lower-thirds/compare/v1.0.1...v1.1.0) (2020-03-01)
 
 
