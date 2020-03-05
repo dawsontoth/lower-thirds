@@ -1,5 +1,12 @@
 .lower-third {
 	align-items: flex-start;
+	display: flex;
+	bottom: 12px;
+	flex-direction: column;
+	justify-content: space-between;
+	padding-left: 130px;
+	position: absolute;
+	transition: clip-path 1s ease-in-out, opacity 1s;
 
 	@mixin in() {
 		clip-path: circle(140% at 6% 50%);
@@ -19,17 +26,6 @@
 
 	@include out();
 
-	bottom: 0;
-
-	display: flex;
-
-	flex-direction: column;
-	justify-content: space-between;
-	left: 0;
-	padding-left: 120px;
-	position: absolute;
-	transition: clip-path 1s ease-in-out, opacity 1s;
-
 	&.in {
 		@include in();
 	}
@@ -40,10 +36,9 @@
 
 	.for-alpha-channel & {
 		> * {
-			text-shadow: 0 3px 6px rgba(255, 255, 255, 0.7);
+			text-shadow: 0 3px 7px rgba(255, 255, 255, 0.9);
 		}
 	}
-
 
 	.primary {
 		font-size: 5.7em;

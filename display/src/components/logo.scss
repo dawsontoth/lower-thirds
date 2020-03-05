@@ -1,5 +1,18 @@
 .logo {
 	align-items: center;
+	background-color: black;
+	border-radius: 100%;
+	bottom: 0;
+	display: flex;
+	font-family: 'Avenir-Black', sans-serif;
+	font-size: 2.4em;
+	height: 100px;
+	justify-content: center;
+	left: 0;
+	position: absolute;
+	transition: opacity 1s, transform 1s ease-in-out;
+	width: 100px;
+	border: 8px solid white;
 
 	@mixin in() {
 		transform: translateX(0) rotate(0);
@@ -10,7 +23,7 @@
 	}
 
 	@mixin out() {
-		transform: translateX(-200%) rotate(-360deg);
+		transform: translateX(-210%) rotate(-360deg);
 
 		.for-alpha-channel & {
 			opacity: 0;
@@ -18,22 +31,6 @@
 	}
 
 	@include out();
-
-	background-color: black;
-
-	border-radius: 100%;
-
-	bottom: 0;
-
-	display: flex;
-	font-family: 'Avenir-Black', sans-serif;
-	font-size: 2.4em;
-	height: 100px;
-	justify-content: center;
-	left: 0;
-	position: absolute;
-	transition: opacity 1s, transform 1s ease-in-out;
-	width: 100px;
 
 	&.in {
 		@include in();
@@ -45,6 +42,6 @@
 
 	.for-alpha-channel & {
 		background-color: white;
-		box-shadow: 0 3px 6px rgba(255, 255, 255, 0.7);
+		box-shadow: 0 3px 6px rgba(255, 255, 255, 0.9);
 	}
 }
