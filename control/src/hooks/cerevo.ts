@@ -156,10 +156,11 @@ export function stopFacebook() {
 }
 
 export enum Image {
-	SayingHi = 'http://s3-ap-northeast-1.amazonaws.com/live-shell/pause/jqdkhKXG5wgh/pause',
-	TakingCommunion = 'http://s3-ap-northeast-1.amazonaws.com/live-shell/pause/4EX3QJDgMIBQ/pause',
-	WatchingAClip = 'http://s3-ap-northeast-1.amazonaws.com/live-shell/pause/zht6_Hv6efh_/pause',
-	ThanksForTuningIn = 'http://s3-ap-northeast-1.amazonaws.com/live-shell/pause/HLkNuGYUwnCu/pause'
+	SayingHi = 'http://s3-ap-northeast-1.amazonaws.com/live-shell/pause/LhilPMta6XiP/pause',
+	Offering = 'http://s3-ap-northeast-1.amazonaws.com/live-shell/pause/7pDpLHfCDVhL/pause',
+	TakingCommunion = 'http://s3-ap-northeast-1.amazonaws.com/live-shell/pause/TtzPtKGOe2jt/pause',
+	WatchingAClip = 'http://s3-ap-northeast-1.amazonaws.com/live-shell/pause/HHoy-LZ0MvC-/pause',
+	ThanksForTuningIn = 'http://s3-ap-northeast-1.amazonaws.com/live-shell/pause/uD5ccIyoxOAc/pause'
 }
 
 export function setPause(image: Image) {
