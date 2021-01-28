@@ -29,7 +29,7 @@
 		"@semantic-release/npm": "^7.0.3",
 		"@semantic-release/release-notes-generator": "^9.0.1",
 		"dotenv": "^8.2.0",
-		"electron": "^8.0.2",
+		"electron": "^9.4.0",
 		"electron-packager": "^14.2.1",
 		"semantic-release": "^17.0.4"
 	},
